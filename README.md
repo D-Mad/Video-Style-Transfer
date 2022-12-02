@@ -21,7 +21,7 @@ Notice that Neural Style Transfer and Photo Style Transfer are model-free method
 ```sh
 ffmpeg -i video.mp4 ./frames/%d.jpg
 ```
-2. open the interactive [Jupyter notebook](/video_transfer.ipynb) to fine-tune the content-style trade-off on the first frame and apply the satisfied transfer effect to other frames.
+2. open the interactive Jupyter notebook, [video_transfer.ipynb](/video_transfer.ipynb), to fine-tune the content-style trade-off on the first frame and apply the satisfied transfer effect to other frames.
 
 **Note:** You can also use this notebook to address photorealistic transfer tasks. Some examples are shown as below.
 
@@ -48,5 +48,6 @@ Content             |  Style | Transfer
 ## Areas of Improvement
 
 1. High-Resolution frames
-2. Long videos with inconsistent background
-3. Fine-tune automation
+2. Quality reduction avoidance
+3. Long videos with inconsistent background
+4. Fine-tune automation
