@@ -13,7 +13,30 @@ Notice that Neural Style Transfer and Photo Style Transfer are model-free method
 
 ## How to use
 
+The demo video:
 ![](video.gif)
 
 
+1. use ffmpeg command to split the video into [frames](/frames/).
 
+```sh
+ffmpeg -i video.mp4 %d.jpg
+```
+2. open the interactive [Jupyter notebook](/frame_transfer.ipynb) to fine-tune the content-style trade-off and save the satisfied model. The instruction of how to use this notebook is inside.
+
+**Note:** You can also use this notebook to address photorealistic transfer tasks. Some examples are shown below.
+
+![](imgs/3.png)
+![](imgs/16.png)
+![](imgs/24.png)
+
+3.  apply the saved model to the rest of the frames.
+
+```py
+python 
+```
+
+4.  use ffmpeg command to integrate frames into the video.
+```sh
+ffmpeg -f image2 -i %d.jpg -vcodec libx264 -pix_fmt yuv420p output.mp4
+``` 
