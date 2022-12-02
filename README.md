@@ -1,4 +1,9 @@
 # Video Style Transfer
+
+
+Content             |  Style | Transfer
+:-------------------------:|:-------------------------:|:---:
+<img src="./videos/video.gif" width="250" height="140"/>  |  <img src="/styles/tar49.png" width="250" height="140"/> | <img src="./videos/output2.gif" width="250" height="140"/>
  
 Video Style Transfer is a CSCI 590 Directed Research project supervised by Prof. [Scott Easley](https://viterbi.usc.edu/directory/faculty/Easley/Scott). This project aims to build a pipeline with new cost-effective and professional-looking cinematic imagery that transfers styles of the given image into a video.
 
@@ -35,7 +40,7 @@ ffmpeg -i video.mp4 ./frames/%d.jpg
 ffmpeg -f image2 -i ./results/%d.jpg -b:v 5842k output.mp4
 ``` 
 
-## Demo
+## Demo in the [code](/video_transfer.ipynb)
 Content             |  Style | Transfer
 :-------------------------:|:-------------------------:|:---:
 <img src="./videos/video.gif" width="250" height="140"/>  |  <img src="/styles/in47.png" width="250" height="140"/> | <img src="./videos/output.gif" width="250" height="140"/>
