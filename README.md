@@ -51,3 +51,6 @@ Content             |  Style | Transfer
 2. Quality reduction avoidance
 3. Long videos with inconsistent background
 4. Fine-tune automation
+
+### Contact
+If you are interested in this project or have questions about it, feel free to contact [Rong Liu](rliu8691@usc.edu), [Venkatesh Vayachal](vayachal@usc.edu), and [Scott Easley](seasley@usc.edu).
