@@ -38,7 +38,7 @@ ffmpeg -f image2 -i ./results/%d.jpg -b:v 5842k output.mp4
 ## Demo
 &emsp; &emsp; &emsp; &emsp; &ensp;   **Content** &emsp; &emsp; &emsp; &ensp; **+** &emsp; &emsp; &emsp; &ensp; **Style** &emsp; &emsp; &emsp; &emsp; &emsp; **=**  &emsp; &emsp;  &emsp; **Transfer**
 <center class="half">
-    <img src="video.gif" width="200" height="112" hspace="2"/><img src="/styles/in47.png" width="200" height="112" hspace="2"/><img src="output.gif" width="200" height="112" hspace="2"/>
+    <img src="video.gif" width="200" height="112" hspace="1"/><img src="/styles/in47.png" width="200" height="112" hspace="1"/><img src="output.gif" width="200" height="112" hspace="1"/>
 </center>
 
 ## Areas of Improvement
