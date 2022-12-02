@@ -23,7 +23,7 @@ ffmpeg -i video.mp4 ./frames/%d.jpg
 ```
 2. open the interactive Jupyter notebook, [video_transfer.ipynb](/video_transfer.ipynb), to fine-tune the content-style trade-off on the first frame and apply the satisfied transfer effect to other frames.
 
-**Note:** You can also use this notebook to address photorealistic transfer tasks. Some examples are shown as below.
+**Note:** You can also use this notebook to address photorealistic transfer tasks. Some examples are shown below.
 
 ![](imgs/3.png)
 ![](imgs/16.png)
@@ -53,4 +53,4 @@ Content             |  Style | Transfer
 4. Fine-tune automation
 
 ### Contact
-If you are interested in this project or have questions about it, feel free to contact [Rong Liu](rliu8691@usc.edu), [Venkatesh Vayachal](vayachal@usc.edu), and [Scott Easley](seasley@usc.edu).
+If you are interested in this project or have questions about it, feel free to contact Rong Liu (<rliu8691@usc.edu>), Venkatesh Vayachal (<vayachal@usc.edu>), and Scott Easley (<seasley@usc.edu>).
