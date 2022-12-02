@@ -16,7 +16,7 @@ Notice that Neural Style Transfer and Photo Style Transfer are model-free method
 
 ## How to use
 
-1. use ffmpeg command to split the [video](/video.mp4) into [frames](/frames/).
+1. use ffmpeg command to split the [video](./videos/video.mp4) into [frames](/frames/).
 
 ```sh
 ffmpeg -i video.mp4 ./frames/%d.jpg
@@ -38,7 +38,7 @@ ffmpeg -f image2 -i ./results/%d.jpg -b:v 5842k output.mp4
 ## Demo
 Content             |  Style | Transfer
 :-------------------------:|:-------------------------:|:---:
-<img src="video.gif" width="250" height="140"/>  |  <img src="/styles/in47.png" width="250" height="140"/> | <img src="output.gif" width="250" height="140"/>
+<img src="./videos/video.gif" width="250" height="140"/>  |  <img src="/styles/in47.png" width="250" height="140"/> | <img src="./videos/output.gif" width="250" height="140"/>
 
 
 
