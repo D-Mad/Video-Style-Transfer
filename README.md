@@ -38,7 +38,7 @@ ffmpeg -f image2 -i ./results/%d.jpg -b:v 5842k output.mp4
 ## Demo
 Content             |  Style | Transfer
 :-------------------------:|:-------------------------:|:---:
-<img src="video.gif" width="200" height="112"/>  |  <img src="/styles/in47.png" width="200" height="112"/> | <img src="output.gif" width="200" height="112"/>
+<img src="video.gif" width="250" height="112"/>  |  <img src="/styles/in47.png" width="250" height="112"/> | <img src="output.gif" width="250" height="112"/>
 
 
 
