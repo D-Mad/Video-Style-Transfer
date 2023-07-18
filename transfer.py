@@ -150,10 +150,10 @@ VGG.to(device)
 for parameter in VGG.parameters():
     parameter.requires_grad_(False)
 
-for i in tqdm(os.listdir('../dataset/input/')):
+for i in tqdm(os.listdir('./dataset/input/')):
     torch.manual_seed(0)
-    content_image = load_image(f'../dataset/input/'+i)
-    style_image = load_image(f'../dataset/style/'+i)
+    content_image = load_image(f'./dataset/input/'+i)
+    style_image = load_image(f'./dataset/style/'+i)
     content_image = content_image.to(device)
     style_image = style_image.to(device)
 
