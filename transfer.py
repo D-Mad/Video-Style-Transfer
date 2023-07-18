@@ -71,20 +71,18 @@ class IST(nn.Module):
         
         # Encoder
         self.encoder = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=3, padding=1),
+            nn.Conv2d(3, 32, kernel_size=1),
             nn.ReLU(inplace=True),
             nn.Conv2d(32, 32, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            # nn.AvgPool2d(kernel_size=2, stride=2)
+            nn.ReLU(inplace=True)
         )
         
         # Decoder
         self.decoder = nn.Sequential(
-            nn.Conv2d(32, 32, kernel_size=3, padding=1),
+
+            nn.ConvTranspose2d(32, 32, kernel_size=3, padding=1),
             nn.ReLU(inplace=True),
-            nn.Conv2d(32, 32, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.ConvTranspose2d(32, 3, kernel_size=1, stride=1)
+            nn.ConvTranspose2d(32, 3, kernel_size=1)
         )
         
     def forward(self):
@@ -97,7 +95,7 @@ class IST(nn.Module):
         # Decoder path
         x2 = self.decoder(x1)
         x2 = transforms.functional.resize(x2, self.content.shape[2:])
-
+        
         return x2+self.content
     
     def get_grim_matrix(self, tensor):
@@ -163,7 +161,7 @@ class IST(nn.Module):
             plt.ioff() 
             plt.show()
         else:
-            for epoch in tqdm(range(0, 100)):
+            for epoch in range(0, 100):
                 target = self.forward()
                 loss = self.get_loss(target)
                 optimizer.zero_grad()
@@ -175,20 +173,22 @@ VGG = models.vgg19(pretrained=True).features
 VGG.to(device)
 for parameter in VGG.parameters():
     parameter.requires_grad_(False)
+for i in tqdm(range(1, 60)):
+    torch.manual_seed(0)
+    try:
+        content_image = load_image(f'../dataset/input/{i}.png')
+        style_image = load_image(f'../dataset/style/{i}.png')
+    except:
+        continue
+    # content_image = load_image('./4k.jpg')
+    # style_image = load_image('./4k2.jpg')
+    content_image = content_image.to(device)
+    style_image = style_image.to(device)
 
-torch.manual_seed(0)
-
-# content_image = load_image('../dataset/input/42.png')
-# style_image = load_image('../dataset/style/42.png')
-content_image = load_image('./4k.jpg')
-style_image = load_image('./4k2.jpg')
-content_image = content_image.to(device)
-style_image = style_image.to(device)
-
-style_net = IST(VGG, content_image, style_image)
-style_net.to(device)
-result = style_net.transfer(True)
-plt.imsave('./result.jpg', result)
+    style_net = IST(VGG, content_image, style_image)
+    style_net.to(device)
+    result = style_net.transfer(False)
+    plt.imsave(f'./outputs/{i}.png', result)
 
 
 
