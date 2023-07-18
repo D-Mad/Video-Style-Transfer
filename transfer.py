@@ -11,19 +11,14 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print('------------------------------------------------------------------')
-print(torch.__version__,device)
-print('------------------------------------------------------------------')
-def load_image(img_path, img_size=None):
+
+def load_image(img_path):
     '''
         Resize the input image so we can make content image and style image have same size, 
         change image into tensor and normalize it
     '''
     
     image = Image.open(img_path).convert('RGB')
-    if img_size is not None:
-        image = image.resize((img_size, img_size))  # change image size to (3, img_size, img_size)
     
     transform = transforms.Compose([
                         # convert the (H x W x C) PIL image in the range(0, 255) into (C x H x W) tensor in the range(0.0, 1.0) 
@@ -56,47 +51,37 @@ def im_convert(tensor):
 
 # Instant Style Transfer
 class IST(nn.Module):
-    def __init__(self, VGG, content, style, alpha=20, resolution=512):
+    def __init__(self, VGG, content, style):
         super(IST, self).__init__()
 
         self.VGG = VGG
         self.content = content
         self.style = transforms.functional.resize(style, self.content.shape[2:])
-        self.alpha = alpha
-        self.resolution = resolution
+        self.resolution = 480
 
         self.content_features = self.get_features(transforms.functional.resize(content, self.resolution), self.VGG)
         self.style_features = self.get_features(transforms.functional.resize(style, self.resolution), self.VGG)
         self.style_gram_matrixs = {layer: self.get_grim_matrix(self.style_features[layer]) for layer in self.style_features}
         
-        # Encoder
-        self.encoder = nn.Sequential(
+        self.style_net = nn.Sequential(
             nn.Conv2d(3, 16, kernel_size=1),
             nn.ReLU(inplace=True),
             nn.Conv2d(16, 32, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True)
-        )
-        
-        # Decoder
-        self.decoder = nn.Sequential(
-
+            nn.ReLU(inplace=True),
             nn.ConvTranspose2d(32, 16, kernel_size=3, padding=1),
             nn.ReLU(inplace=True),
             nn.ConvTranspose2d(16, 3, kernel_size=1)
         )
         
     def forward(self):
-        x = self.content
-        x = transforms.functional.resize(x, self.resolution)
 
-        # Encoder path
-        x1 = self.encoder(x)
-        
-        # Decoder path
-        x2 = self.decoder(x1)
-        x2 = transforms.functional.resize(x2, self.content.shape[2:])
+        downsample_content = transforms.functional.resize(self.content, self.resolution)
 
-        return x2+self.content
+        style = self.style_net(downsample_content)
+
+        style = transforms.functional.resize(style, self.content.shape[2:])
+
+        return style + self.content
     
     def get_grim_matrix(self, tensor):
         b, c, h, w = tensor.size()
@@ -133,63 +118,53 @@ class IST(nn.Module):
             layer_style_loss = style_weights[layer] * torch.mean((target_gram_matrix - style_gram_matrix) ** 2)
             b, c, h, w = target_feature.shape
             style_loss = style_loss + layer_style_loss / (c * h * w)
-
-
-        return self.alpha * content_loss + style_loss
+        return content_loss, style_loss
     
-    def transfer(self, visualize=False):
+    def transfer(self):
         optimizer = optim.Adam(self.parameters(), lr=0.001)
-        if visualize:
-            fig, ax = plt.subplots()
-            ax.axis('off')
-            plt.ion()  # Enable interactive mode
-            ax.imshow(im_convert(self.content))
-            plt.title('Press any key to start style tranfer...')
-            plt.waitforbuttonpress()
-            t = tqdm(range(1, 101))
-            for epoch in t:
-                target = self.forward()
-                loss = self.get_loss(target)
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
-                if epoch%20==0:
-                    ax.imshow(im_convert(target))
-                    plt.title("Elapsed Time: {:.2f} seconds".format(t.format_dict['elapsed']))
-                    plt.draw()
-                    plt.pause(0.00001)    
-            plt.ioff() 
-            plt.show()
-        else:
-            for epoch in range(0, 100):
-                target = self.forward()
-                loss = self.get_loss(target)
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
+        best_loss = float('inf')  
+        patience = 10 
+        early_stop_counter = 0  
+        for epoch in range(0, 150):
+            target = self.forward()
+            content_loss, style_loss = self.get_loss(target)
+            if epoch==0:
+                inital_content_loss = content_loss.item()
+                loss = content_loss + style_loss
+                initial_loss = loss.item()
+            loss = torch.exp(content_loss/inital_content_loss - 1) * content_loss + style_loss
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            normalized_loss = loss.item()/initial_loss
+
+            if normalized_loss < best_loss - 0.01:
+                best_loss = normalized_loss
+                early_stop_counter = 0
+            else:
+                early_stop_counter += 1
+                if early_stop_counter >= patience:
+                    break
         return im_convert(target)
          
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(torch.__version__,device)
 VGG = models.vgg19(pretrained=True).features
 VGG.to(device)
 for parameter in VGG.parameters():
     parameter.requires_grad_(False)
-for i in tqdm(range(1, 60)):
+
+for i in tqdm(os.listdir('../dataset/input/')):
     torch.manual_seed(0)
-    try:
-        content_image = load_image(f'../dataset/input/{i}.png')
-        style_image = load_image(f'../dataset/style/{i}.png')
-    except:
-        continue
-    # content_image = load_image('./4k.jpg')
-    # style_image = load_image('./4k2.jpg')
+    content_image = load_image(f'../dataset/input/'+i)
+    style_image = load_image(f'../dataset/style/'+i)
     content_image = content_image.to(device)
     style_image = style_image.to(device)
 
     style_net = IST(VGG, content_image, style_image)
     style_net.to(device)
-    result = style_net.transfer(False)
-    plt.imsave(f'./outputs/{i}.png', result)
-
-
+    result = style_net.transfer()
+    plt.imsave(f'./outputs/{i}', result)
 
 
