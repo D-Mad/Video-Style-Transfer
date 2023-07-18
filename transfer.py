@@ -90,12 +90,7 @@ class IST(nn.Module):
         return gram_matrix
     
     def get_features(self, image, model):
-        layers = {'0': 'conv1_1',   # default style layer
-                '5': 'conv2_1',   # default style layer
-                '10': 'conv3_1',  # default style layer
-                '19': 'conv4_1',  # default style layer
-                '21': 'conv4_2',  # default content layer
-                '28': 'conv5_1'}  # default style layer
+        layers = {'0': 'conv1_1', '5': 'conv2_1', '10': 'conv3_1', '19': 'conv4_1', '21': 'conv4_2', '28': 'conv5_1'}
         features = {}
         x = image
         for name, layer in model._modules.items():
@@ -162,9 +157,9 @@ for i in tqdm(os.listdir('../dataset/input/')):
     content_image = content_image.to(device)
     style_image = style_image.to(device)
 
-    style_net = IST(VGG, content_image, style_image)
-    style_net.to(device)
-    result = style_net.transfer()
+    ist = IST(VGG, content_image, style_image)
+    ist.to(device)
+    result = ist.transfer()
     plt.imsave(f'./outputs/{i}', result)
 
 
