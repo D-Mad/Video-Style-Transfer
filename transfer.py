@@ -71,18 +71,18 @@ class IST(nn.Module):
         
         # Encoder
         self.encoder = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=1),
+            nn.Conv2d(3, 16, kernel_size=1),
             nn.ReLU(inplace=True),
-            nn.Conv2d(32, 32, kernel_size=3, padding=1),
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.ReLU(inplace=True)
         )
         
         # Decoder
         self.decoder = nn.Sequential(
 
-            nn.ConvTranspose2d(32, 32, kernel_size=3, padding=1),
+            nn.ConvTranspose2d(32, 16, kernel_size=3, padding=1),
             nn.ReLU(inplace=True),
-            nn.ConvTranspose2d(32, 3, kernel_size=1)
+            nn.ConvTranspose2d(16, 3, kernel_size=1)
         )
         
     def forward(self):
@@ -95,7 +95,7 @@ class IST(nn.Module):
         # Decoder path
         x2 = self.decoder(x1)
         x2 = transforms.functional.resize(x2, self.content.shape[2:])
-        
+
         return x2+self.content
     
     def get_grim_matrix(self, tensor):
