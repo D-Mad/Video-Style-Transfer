@@ -114,7 +114,7 @@ class IST(nn.Module):
                 inital_content_loss = content_loss.item()
                 loss = content_loss + style_loss
                 initial_loss = loss.item()
-            loss = torch.exp(content_loss/inital_content_loss - 1) * content_loss + style_loss
+            loss = torch.exp(content_loss/inital_content_loss - 1) * content_loss + style_loss # maybe leave the selection of content to style ratio here·····
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
