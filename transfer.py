@@ -146,10 +146,7 @@ def main():
 
     # Check if CUDA is available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(torch.__version__, device)
-
-    # Load VGG model
-    
+    print(torch.__version__, device)    
 
     # Transfer images
     if args.content_image and args.style_image:
