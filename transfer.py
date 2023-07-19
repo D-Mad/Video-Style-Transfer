@@ -149,16 +149,17 @@ def main():
     print(torch.__version__, device)
 
     # Load VGG model
-    print('Loading VGG model')
-    VGG = models.vgg19(weights='DEFAULT').features
-    VGG.to(device)
-    for parameter in VGG.parameters():
-        parameter.requires_grad_(False)
-    print('Starting transfer')
+    
 
     # Transfer images
     if args.content_image and args.style_image:
-        # Single content and style image
+        print('Loading VGG model')
+        VGG = models.vgg19(weights='DEFAULT').features
+        VGG.to(device)
+        for parameter in VGG.parameters():
+            parameter.requires_grad_(False)
+        print('Input:', args.content_image, args.style_image)
+        print('Loading input data')
         content_image = load_image(args.content_image)
         style_image = load_image(args.style_image)
         content_image = content_image.to(device)
@@ -166,38 +167,54 @@ def main():
 
         ist = IST(VGG, content_image, style_image)
         ist.to(device)
+        print('Transfering')
         result = im_convert(ist.transfer())
+        print('Saving')
         plt.imsave('./result.png', result)
 
     elif args.content_image_folder and args.style_image_folder:
-        # Content and style image folders
+        print('Loading VGG model')
+        VGG = models.vgg19(weights='DEFAULT').features
+        VGG.to(device)
+        for parameter in VGG.parameters():
+            parameter.requires_grad_(False)
+        print('Input:', args.content_image_folder, args.style_image_folder)
+        print('Loading input data')
         content_folder = args.content_image_folder
         style_folder = args.style_image_folder
 
         # Create output folder if it doesn't exist
         output_folder = './outputs'
         os.makedirs(output_folder, exist_ok=True)
-
+        results = []
+        print('Transfering')
         # Process each image in the folders
         for i in tqdm(os.listdir(content_folder)):
             try:
                 content_image = load_image(os.path.join(content_folder, i))
                 style_image = load_image(os.path.join(style_folder, i))
             except:
-                print(f'{os.path.join(style_folder, i)} not exists')
+                print(f'{os.path.join(style_folder, i)} not exists. The content and style file name should be same.')
             content_image = content_image.to(device)
             style_image = style_image.to(device)
 
             ist = IST(VGG, content_image, style_image)
             ist.to(device)
-            result = im_convert(ist.transfer())
-            plt.imsave(os.path.join(output_folder, i), result)
+            results.append(im_convert(ist.transfer()))
+        print('Saving')
+        for i, path in tqdm(enumerate(os.listdir(content_folder))):
+            plt.imsave(os.path.join(output_folder, path), results[i])
     
     elif args.content_video and args.style_image:
-
+        print('Loading VGG model')
+        VGG = models.vgg19(weights='DEFAULT').features
+        VGG.to(device)
+        for parameter in VGG.parameters():
+            parameter.requires_grad_(False)
+        print('Input:', args.content_video, args.style_image)
+        print('Loading input data')
         reader = io.VideoReader(args.content_video)
         fps = reader.get_metadata()['video']['fps'][0]
-        print('Loading the video')
         frames = []
         for frame in tqdm(reader):
             frames.append(frame['data'])
@@ -206,9 +223,9 @@ def main():
         mean = torch.tensor([0.485, 0.456, 0.406])
         std = torch.tensor([0.229, 0.224, 0.225])
 
-        frames = (frames - mean[:, None, None]) / std[:, None, None]
+        frames = (frames - mean[None, :, None, None]) / std[None, :, None, None]
         frames = frames.to(device)
-        
+        print('Transfering')
         for i in tqdm(range(len(frames))):
             if i == 0:
                 content_image = frames[0].unsqueeze(0)
@@ -218,21 +235,19 @@ def main():
                 ist = IST(VGG, content_image, style_image)
                 ist.to(device)
                 frames[0] = ist.transfer()
-                print(frames[0].shape)
-                # plt.imsave('./result.png', )
             else:
                 with torch.no_grad():
-                    frames[i] = ist.forward(frames[i])
-
+                    frames[i] = ist.forward(frames[i].unsqueeze(0))
+        print('Saving')
         frames = frames.cpu().detach()
-        print(frames.shape)
-        frames = (frames * std[:, None, None]) + mean[:, None, None]
-        frames = frames * 255.0
+        frames = (frames * std[None, :, None, None]) + mean[None, :, None, None]
         frames = frames.permute(0, 2, 3, 1)
+        frames = frames.clip(0, 1)        
+        frames = frames*255
         io.write_video('./result.mp4', frames, fps)
 
     else:
-        print('Please provide either --content-image and --style-image paths or --content-image-folder and --style-image-folder paths.')
+        print('Please provide either --content-image/--content-video and --style-image paths or --content-image-folder and --style-image-folder paths.')
 
 if __name__ == '__main__':
     main()
