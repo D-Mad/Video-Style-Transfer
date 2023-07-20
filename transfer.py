@@ -141,6 +141,7 @@ def main():
     # Specify content and style image folder paths
     parser.add_argument('--content-image-folder', type=str, help='Path to the folder containing content images')
     parser.add_argument('--style-image-folder', type=str, help='Path to the folder containing style images')
+    parser.add_argument('--output-path',type=str, help='Path to save the result')
 
     args = parser.parse_args()
 
