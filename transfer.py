@@ -260,13 +260,8 @@ def main():
         frames = frames.permute(0, 2, 3, 1)
         frames = frames.clip(0, 1)        
         frames = frames*255
-        
-        if not args.output_path:
-            output_path='./'
-        else:
-            output_path=args.output_path        
-        output_path=os.path.join(output_path,'result.mp4')
-        io.write_video(output_path, frames, fps)
+               
+        io.write_video(os.path.join(output_folder, os.path.basename(args.content_video)), frames, fps)
 
     else:
         print('Please provide either --content-image/--content-video and --style-image paths or --content-image-folder and --style-image-folder paths.')
