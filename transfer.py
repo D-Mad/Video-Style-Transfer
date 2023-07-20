@@ -141,13 +141,15 @@ def main():
     # Specify content and style image folder paths
     parser.add_argument('--content-image-folder', type=str, help='Path to the folder containing content images')
     parser.add_argument('--style-image-folder', type=str, help='Path to the folder containing style images')
+    parser.add_argument('--output-folder',type=str, help='Path to output folder', default='./outputs/')
 
     args = parser.parse_args()
 
     # Check if CUDA is available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(torch.__version__, device)    
-
+    output_folder = args.output_folder
+    os.makedirs(output_folder, exist_ok=True)
     # Transfer images
     if args.content_image and args.style_image:
         print('Loading VGG model')
@@ -167,7 +169,7 @@ def main():
         print('Transfering')
         result = im_convert(ist.transfer())
         print('Saving')
-        plt.imsave('./result.png', result)
+        plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result)
 
     elif args.content_image_folder and args.style_image_folder:
         print('Loading VGG model')
@@ -179,10 +181,7 @@ def main():
         print('Loading input data')
         content_folder = args.content_image_folder
         style_folder = args.style_image_folder
-
-        # Create output folder if it doesn't exist
-        output_folder = './outputs'
-        os.makedirs(output_folder, exist_ok=True)
+        
         results = []
         print('Transfering')
         # Process each image in the folders
@@ -224,17 +223,26 @@ def main():
         frames = frames.to(device)
         print('Transfering')
         for i in tqdm(range(len(frames))):
+            frame = frames[i].unsqueeze(0)
+            # frame = frame.to(device)
             if i == 0:
-                content_image = frames[0].unsqueeze(0)
+                content_image = frame
                 style_image = load_image(args.style_image)
                 style_image = style_image.to(device)
 
                 ist = IST(VGG, content_image, style_image)
                 ist.to(device)
-                frames[0] = ist.transfer()
+                frame = ist.transfer()
+                
             else:
                 with torch.no_grad():
-                    frames[i] = ist.forward(frames[i].unsqueeze(0))
+                    frame = ist.forward(frame)
+            # frame = frame.cpu().detach()
+            # frame = (frame * std[None, :, None, None]) + mean[None, :, None, None]
+            # frame = frame.permute(0, 2, 3, 1)
+            # frame = frame.clip(0, 1)        
+            # frame = frame*255
+            frames[i] = frame
         print('Saving')
         frames = frames.cpu().detach()
         frames = (frames * std[None, :, None, None]) + mean[None, :, None, None]
