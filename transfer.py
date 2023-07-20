@@ -171,7 +171,8 @@ def main():
         print('Saving')
         plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result)
 
-    elif args.content_image_folder and args.style_image_folder:
+
+    elif args.content_image_folder and args.style_image_folder:#the images in the folder should be paired and having same name
         print('Loading VGG model')
         VGG = models.vgg19(weights='DEFAULT').features
         VGG.to(device)
@@ -181,7 +182,7 @@ def main():
         print('Loading input data')
         content_folder = args.content_image_folder
         style_folder = args.style_image_folder
-        
+    
         results = []
         print('Transfering')
         # Process each image in the folders
@@ -213,6 +214,7 @@ def main():
         fps = reader.get_metadata()['video']['fps'][0]
         frames = []
         for frame in tqdm(reader):
+            
             frames.append(frame['data'])
         frames = torch.stack(frames, 0).float()/255
 
@@ -249,7 +251,13 @@ def main():
         frames = frames.permute(0, 2, 3, 1)
         frames = frames.clip(0, 1)        
         frames = frames*255
-        io.write_video('./result.mp4', frames, fps)
+        
+        if not args.output_path:
+            output_path='./'
+        else:
+            output_path=args.output_path        
+        output_path=os.path.join(output_path,'result.mp4')
+        io.write_video(output_path, frames, fps)
 
     else:
         print('Please provide either --content-image/--content-video and --style-image paths or --content-image-folder and --style-image-folder paths.')
