@@ -16,13 +16,17 @@ import torchvision.io as io
 def load_image(img_path):
     
     image = Image.open(img_path).convert('RGB')
+    try:
+        dpi = image.info['dpi'][0]
+    except:
+        dpi = 72
     transform = transforms.Compose([
                         transforms.ToTensor(),
                         transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),   # ImageNet 
                         ])   
     # change image's size to (b, 3, h, w)
     image = transform(image)[:3, :, :].unsqueeze(0)
-    return image
+    return image, dpi
 
 
 def im_convert(tensor):
@@ -159,8 +163,8 @@ def main():
             parameter.requires_grad_(False)
         print('Input:', args.content_image, args.style_image)
         print('Loading input data')
-        content_image = load_image(args.content_image)
-        style_image = load_image(args.style_image)
+        content_image, dpi = load_image(args.content_image)
+        style_image, _ = load_image(args.style_image)
         content_image = content_image.to(device)
         style_image = style_image.to(device)
 
@@ -169,7 +173,7 @@ def main():
         print('Transfering')
         result = im_convert(ist.transfer())
         print('Saving')
-        plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result)
+        plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result, dpi=dpi)
 
 
     elif args.content_image_folder and args.style_image_folder:#the images in the folder should be paired and having same name
@@ -184,12 +188,14 @@ def main():
         style_folder = args.style_image_folder
     
         results = []
+        dpis = []
         print('Transfering')
         # Process each image in the folders
         for i in tqdm(os.listdir(content_folder)):
             try:
-                content_image = load_image(os.path.join(content_folder, i))
-                style_image = load_image(os.path.join(style_folder, i))
+                content_image, dpi = load_image(os.path.join(content_folder, i))
+                style_image, _ = load_image(os.path.join(style_folder, i))
+                dpis.append(dpi)
             except:
                 print(f'{os.path.join(style_folder, i)} not exists. The content and style file name should be same.')
             content_image = content_image.to(device)
@@ -200,7 +206,7 @@ def main():
             results.append(im_convert(ist.transfer()))
         print('Saving')
         for i, path in tqdm(enumerate(os.listdir(content_folder))):
-            plt.imsave(os.path.join(output_folder, path), results[i])
+            plt.imsave(os.path.join(output_folder, path), results[i], dpi=dpis[i])
     
     elif args.content_video and args.style_image:
         print('Loading VGG model')
