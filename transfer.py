@@ -167,10 +167,17 @@ def main():
         ist.to(device)
         print('Transfering')
         result = im_convert(ist.transfer())
-        print('Saving')
-        plt.imsave('./result.png', result)
+        if not args.output_path:
+            output_path='./'
+        else:
+            output_path=args.output_path
+        
+        os.makedirs(output_path, exist_ok=True)
+        output_path=os.path.join(output_path,'result.png')
+        print('Saving image')
+        plt.imsave(output_path, result)
 
-    elif args.content_image_folder and args.style_image_folder:
+    elif args.content_image_folder and args.style_image_folder:#the images in the folder should be paired and having same name
         print('Loading VGG model')
         VGG = models.vgg19(weights='DEFAULT').features
         VGG.to(device)
@@ -182,7 +189,11 @@ def main():
         style_folder = args.style_image_folder
 
         # Create output folder if it doesn't exist
-        output_folder = './outputs'
+        if not args.output_path:
+            output_folder='./outputs'
+        else:
+            output_folder=args.output_path
+        
         os.makedirs(output_folder, exist_ok=True)
         results = []
         print('Transfering')
@@ -215,6 +226,7 @@ def main():
         fps = reader.get_metadata()['video']['fps'][0]
         frames = []
         for frame in tqdm(reader):
+            
             frames.append(frame['data'])
         frames = torch.stack(frames, 0).float()/255
 
@@ -242,7 +254,13 @@ def main():
         frames = frames.permute(0, 2, 3, 1)
         frames = frames.clip(0, 1)        
         frames = frames*255
-        io.write_video('./result.mp4', frames, fps)
+        
+        if not args.output_path:
+            output_path='./'
+        else:
+            output_path=args.output_path        
+        output_path=os.path.join(output_path,'result.mp4')
+        io.write_video(output_path, frames, fps)
 
     else:
         print('Please provide either --content-image/--content-video and --style-image paths or --content-image-folder and --style-image-folder paths.')
