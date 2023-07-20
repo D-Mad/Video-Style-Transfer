@@ -168,8 +168,10 @@ def main():
         ist.to(device)
         print('Transfering')
         result = im_convert(ist.transfer())
+
         print('Saving')
-        plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result)
+        plt.imsave(os.path.join(output_folder, os.path.basename(args.content_image)), result,dpi=300.0)
+
 
 
     elif args.content_image_folder and args.style_image_folder:#the images in the folder should be paired and having same name
@@ -200,7 +202,7 @@ def main():
             results.append(im_convert(ist.transfer()))
         print('Saving')
         for i, path in tqdm(enumerate(os.listdir(content_folder))):
-            plt.imsave(os.path.join(output_folder, path), results[i])
+            plt.imsave(os.path.join(output_folder, path), results[i],dpi=300.0)
     
     elif args.content_video and args.style_image:
         print('Loading VGG model')
