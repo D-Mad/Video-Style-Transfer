@@ -6,7 +6,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import transforms, models
 import os
-import torchvision
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt 
@@ -238,6 +237,7 @@ def main():
     parser.add_argument('--content-image-folder', type=str, help='Path to the folder containing content images')
     parser.add_argument('--style-image-folder', type=str, help='Path to the folder containing style images')
     parser.add_argument('--output-folder',type=str, help='Path to output folder', default='./outputs/')
+    parser.add_argument('--frame-by-frame',type=bool, help='Transfer videos frame by frame', default=False)
 
     args = parser.parse_args()
 
@@ -310,53 +310,74 @@ def main():
         for parameter in VGG.parameters():
             parameter.requires_grad_(False)
         print('Input:', args.content_video, args.style_image)
-        print('Loading input data')
+        
         reader = io.VideoReader(args.content_video)
         fps = reader.get_metadata()['video']['fps'][0]
         bit_rate = av.open(args.content_video).streams.video[0].bit_rate
-        frames = []
-        for frame in tqdm(reader):            
-            frames.append(frame['data'])
-        
-        frames = torch.stack(frames, 0).float() / 255
-        del frame
-
-
-        # frames = torch.stack(frames, 0).float()/255
 
         mean = torch.tensor([0.485, 0.456, 0.406])
         std = torch.tensor([0.229, 0.224, 0.225])
 
-        frames = (frames - mean[None, :, None, None]) / std[None, :, None, None]
-        frames = frames.to(device)
-        print('Transfering')
-        for i in tqdm(range(len(frames))):
-            frame = frames[i].unsqueeze(0)
-            # frame = frame.to(device)
-            if i == 0:
-                content_image = frame
-                style_image,_ = load_image(args.style_image)
-                style_image = style_image.to(device)
+        if args.frame_by_frame:
+            total_frame = av.open(args.content_video).streams.video[0].frames
+            frames = []
+            print('Transfer video frame by frame')
+            for i in tqdm(range((total_frame))):
+                frame = next(reader)['data'].unsqueeze(0)
+                frame = (frame/255. - mean[None, :, None, None]) / std[None, :, None, None]
+                frame = frame.to(device)
+                if i == 0:
+                    content_image = frame
+                    style_image,_ = load_image(args.style_image)
+                    style_image = style_image.to(device)
 
-                ist = IST(VGG, content_image, style_image)
-                ist.to(device)
-                frame = ist.transfer()
-                
-            else:
-                with torch.no_grad():
-                    frame = ist.forward(frame)
-            # frame = frame.cpu().detach()
-            # frame = (frame * std[None, :, None, None]) + mean[None, :, None, None]
-            # frame = frame.permute(0, 2, 3, 1)
-            # frame = frame.clip(0, 1)        
-            # frame = frame*255
-            frames[i] = frame
+                    ist = IST(VGG, content_image, style_image)
+                    ist.to(device)
+                    frame = ist.transfer()
+                    
+                else:
+                    with torch.no_grad():
+                        frame = ist.forward(frame)
+                frame = frame.cpu().detach()
+                frame = (frame * std[None, :, None, None]) + mean[None, :, None, None]
+                frame = frame.permute(0, 2, 3, 1)
+                frame = frame.clip(0, 1)        
+                frame = frame*255
+                frame = frame.squeeze(0)
+                frames.append(frame.to(torch.uint8))
+            frames = torch.stack(frames, 0)
+        else:
+            print('Loading input data')
+            frames = []
+            for frame in tqdm(reader):            
+                frames.append(frame['data'])
+            
+            frames = torch.stack(frames, 0).float() / 255
+            del frame
+            frames = (frames - mean[None, :, None, None]) / std[None, :, None, None]
+            frames = frames.to(device)
+            print('Transfer the whole video')
+            for i in tqdm(range(len(frames))):
+                frame = frames[i].unsqueeze(0)
+                if i == 0:
+                    content_image = frame
+                    style_image,_ = load_image(args.style_image)
+                    style_image = style_image.to(device)
+
+                    ist = IST(VGG, content_image, style_image)
+                    ist.to(device)
+                    frame = ist.transfer()
+                    
+                else:
+                    with torch.no_grad():
+                        frame = ist.forward(frame)
+                frames[i] = frame
+            frames = frames.cpu().detach()
+            frames = (frames * std[None, :, None, None]) + mean[None, :, None, None]
+            frames = frames.permute(0, 2, 3, 1)
+            frames = frames.clip(0, 1)        
+            frames = frames*255
         print('Saving')
-        frames = frames.cpu().detach()
-        frames = (frames * std[None, :, None, None]) + mean[None, :, None, None]
-        frames = frames.permute(0, 2, 3, 1)
-        frames = frames.clip(0, 1)        
-        frames = frames*255
         write_video(os.path.join(output_folder, os.path.basename(args.content_video)), frames, fps, bit_rate=bit_rate)
 
     else:
