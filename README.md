@@ -18,7 +18,11 @@ Professional cinematic lighting costs thousands of dollars, as does color correc
 
 
 ## How to use
+    conda create --name IST -y python=3.8
+    conda activate IST
+    pip install -r requirements.txt
 
+    python transfer.py --content-image ./dataset/input/1.png --style-image ./dataset/style/1.png
 
 
 
