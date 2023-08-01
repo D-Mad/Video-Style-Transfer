@@ -138,23 +138,28 @@
 <body>
 	<br>
 	<center>
-		<span style="font-size:36px">Creative and Descriptive Paper Title</span>
+		<span style="font-size:36px">Instant Photorealistic Style Transfer: A Lightweight and Adaptive Approach</span>
 		<table align=center width=600px>
 			<table align=center width=600px>
 				<tr>
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">First Author</a></span>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Rong Liu</a></span>
 						</center>
 					</td>
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Second Author</a></span>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Enyu Zhao</a></span>
 						</center>
 					</td>
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Third Author</a></span>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Zhiyuan Liu</a></span>
+						</center>
+					</td>
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Scott Easley</a></span>
 						</center>
 					</td>
 				</tr>
@@ -201,7 +206,9 @@
 		<center><h1>Abstract</h1></center>
 		<tr>
 			<td>
-				This is my abstract.
+				In this paper, we propose the Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight style network with a content shortcut to enable instant photorealistic style transfer from a style image to a content image while preserving spatial information.
+To further enhance the style transfer process, we introduce an instance-adaptive coefficient $\alpha$, which adaptively fine-tunes the loss function to prioritize the photorealism of outputs. This adaptive coefficient also accelerates the convergence of the style network, leading to rapid training completion within seconds.
+By retaining spatial information during the style transfer, IPST is well-suited for video style transfer tasks. We achieve this by training the style transfer on the first frame and then applying the learned style to the remaining frames. Experimental results demonstrate that IPST generates consistent and photorealistic output videos, making it a promising solution for various photorealistic transfer applications.
 			</td>
 		</tr>
 	</table>
