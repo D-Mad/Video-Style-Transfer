@@ -1,31 +1,81 @@
-# Video Style Transfer
+<h1 align="center"> Instant Photorealistic Style Transfer:<br /> A Lightweight and Adaptive Approach </h1>
+<p align="center">
+<a style="color:#000000;" href="https://rongliu-leo.github.io/">Rong Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://www.linkedin.com/in/enyu-zhao-564566250/">Enyu Zhao</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://www.linkedin.com/in/liuzy98/">Zhiyuan Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley</a>
+</p>
 
+<p align="center">
+<a href="https://www.usc.edu/">University of Southern California</a> 
+</p>
 
-<!-- Content             |  Style | Transfer
-:-------------------------:|:-------------------------:|:---:
-<img src="./videos/video.gif" width="250" height="140"/>  |  <img src="/styles/tar49.png" width="250" height="140"/> | <img src="./videos/output2.gif" width="250" height="140"/> -->
+<p align="center">
+<a href="https://rongliu-leo.github.io/Video-Style-Transfer/">Project Page</a>
+<a>  |  </a>
+<a href="https://www.usc.edu/">Paper</a> 
+</p>
+
  
-Video Style Transfer is a CSCI 590 Directed Research project supervised by Prof. [Scott Easley](https://viterbi.usc.edu/directory/faculty/Easley/Scott). This project aims to build a pipeline with new cost-effective and professional-looking cinematic imagery that transfers styles of the given image into a video.
-
-### Motivation
-
-Professional cinematic lighting costs thousands of dollars, as does color correction after a film is developed. This research is a way to see if a lot of that can be circumvented by simply choosing an existing image as an input and having the algorithm do all the relighting.
-
-[Neural Style Transfer](https://openaccess.thecvf.com/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf), regardless of how fancy it is, depreciates the image into a garbled series of lines and colors. So while it is initially interesting, it has very limited applications in a film. [Photo Style Transfer](https://openaccess.thecvf.com/content_cvpr_2017/papers/Luan_Deep_Photo_Style_CVPR_2017_paper.pdf) can be used to color-correct images that are shot well but are not lit well or have uncorrected color. However, due to computing Matting Laplacian matrices for retaining the photorealistic semantic, Photo Style Transfer runs painfully slow and is not able to process a video with hundreds and thousands of image frames. 
-
-### Method
 
 
-
-## How to use
-    conda create --name IST -y python=3.8
-    conda activate IST
-    pip install -r requirements.txt
-
-    python transfer.py --content-image ./dataset/input/1.png --style-image ./dataset/style/1.png
+# About
+Instant Photorealistic Style Transfer (IPST) is designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. It utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image or video while preserving spatial information. It also has an instance-adaptive optimization method to accelerate convergence, resulting in rapid training completion within seconds.
 
 
 
 
-### Contact
+# Quickstart
+The quickstart will help you install IPST and be familiar with the transfer commands.
+
+## Installation
+
+### Prerequisites
+
+An NVIDIA video card with installed [CUDA](https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html).
+
+### Clone repository
+```bash
+git clone https://github.com/RongLiu-Leo/Video-Style-Transfer.git
+cd Video-Style-Transfer
+```
+
+### Create environment
+
+```bash
+conda create --name IPST -y python=3.8
+conda activate IPST
+pip install --upgrade pip
+```
+
+### Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Image style transfer
+For a content-style image pair, run
+```bash
+python transfer.py --content-image {content_image_path} --style-image {style_image_path}
+```
+For multiple content-style image pairs, please put them into separate folders and make sure image pair names are the same and run
+```bash
+python transfer.py --content-image-folder {content_image_folder_path} --style-image-folder {style_image_folder_path}
+```
+### Video style transfer
+By default, IPST will load and transfer all video frames, which means the batch size is equal to the number of frames. This setting achieves extreme speed but can potentially cause memory problems.
+```bash
+python transfer.py --content-video {content_image_path} --style-image {style_image_path}
+```
+Using the ```--frame-by-frame``` option will set the batch size to 1, enabling the processing of longer videos at the expense of speed.
+```bash
+python transfer.py --content-video {content_video_path} --style-image {style_image_path} --frame-by-frame
+```
+If it is still not working, try to split the whole video into smaller videos.
+
+# Citation
+
+# Contact
 If you are interested in this project or have questions about it, feel free to contact Rong Liu (<rliu8691@usc.edu>) and Scott Easley (<seasley@usc.edu>).

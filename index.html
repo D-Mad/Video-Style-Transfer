@@ -1,311 +1,305 @@
-<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
 
-<style type="text/css">
-	body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-		font-weight:300;
-		font-size:18px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
-	
-	h1 {
-		font-size:32px;
-		font-weight:300;
-	}
-	
-	.disclaimerbox {
-		background-color: #eee;		
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-		padding: 20px;
-	}
-
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.rounded {
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	a:link,a:visited
-	{
-		color: #1367a7;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #208799;
-	}
-	
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-	
-	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		15px 15px 0 0px #fff, /* The fourth layer */
-		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		20px 20px 0 0px #fff, /* The fifth layer */
-		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		25px 25px 0 0px #fff, /* The fifth layer */
-		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
-
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-
-	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-	
-	.vert-cent {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	
-	hr
-	{
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-</style>
-
+<!DOCTYPE html>
 <html>
-<head>
-	<title>This is my paper title</title>
-	<meta property="og:image" content="Path to my teaser.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
-	<meta property="og:title" content="Creative and Descriptive Paper Title." />
-	<meta property="og:description" content="Paper description." />
 
-	<!-- Get from Google Analytics -->
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src=""></script> 
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-		gtag('config', 'UA-75863369-6');
-	</script>
+    <title>Instant Photorealistic Style Transfer: A Lightweight and Adaptive Approach</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
 </head>
 
 <body>
-	<br>
-	<center>
-		<span style="font-size:36px">Instant Photorealistic Style Transfer: <br />A Lightweight and Adaptive Approach</span>
-		<table align=center width=600px>
-			<table align=center width=600px>
-				<tr>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://rongliu-leo.github.io/">Rong Liu</a></span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Enyu Zhao</a></span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Zhiyuan Liu</a></span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley</a></span>
-						</center>
-					</td>
-				</tr>
-			</table>
-			<table align=center width=250px>
-				<tr>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href=''>[Paper]</a></span>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://github.com/richzhang/webpage-template'>[GitHub]</a></span><br>
-						</center>
-					</td>
-				</tr>
-			</table>
-		</table>
-	</center>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                Instant Photorealistic Style Transfer:
+				<br />A Lightweight and Adaptive Approach
+                <!-- <small>  (CVPR 2023)  </small> -->
+            </h1>
+            
+        </div>
 
-	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=260px>
-					<center>
-						<img class="round" style="width:500px" src="./resources/teaser.png"/>
-					</center>
-				</td>
-			</tr>
-		</table>
-		<table align=center width=850px>
-			<tr>
-				<td>
-					This was a template originally made for <a href="http://richzhang.github.io/colorization/">Colorful Image Colorization</a>. The code can be found in this <a href="https://github.com/richzhang/webpage-template">repository</a>.
-				</td>
-			</tr>
-		</table>
-	</center>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://rongliu-leo.github.io/">Rong Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://www.linkedin.com/in/enyu-zhao-564566250/">Enyu Zhao</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://www.linkedin.com/in/liuzy98/">Zhiyuan Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley</a>
+                </div>
 
-	<hr>
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="https://www.usc.edu/">University of Southern California<sup></sup></a> 
+                </div> 
 
-	<table align=center width=850px>
-		<center><h1>Abstract</h1></center>
-		<tr>
-			<td>
-				In this paper, we propose the Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight style network with a content shortcut to enable instant photorealistic style transfer from a style image to a content image while preserving spatial information.
-To further enhance the style transfer process, we introduce an instance-adaptive coefficient $\alpha$, which adaptively fine-tunes the loss function to prioritize the photorealism of outputs. This adaptive coefficient also accelerates the convergence of the style network, leading to rapid training completion within seconds.
-By retaining spatial information during the style transfer, IPST is well-suited for video style transfer tasks. We achieve this by training the style transfer on the first frame and then applying the learned style to the remaining frames. Experimental results demonstrate that IPST generates consistent and photorealistic output videos, making it a promising solution for various photorealistic transfer applications.
-			</td>
-		</tr>
-	</table>
-	<br>
 
-	<hr>
-	<center><h1>Talk</h1></center>
-	<p align="center">
-		<iframe width="660" height="395" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen align="center"></iframe>
-	</p>
+            </div>
+        </div>
 
-	<table align=center width=800px>
-		<br>
-		<tr>
-			<center>
-				<span style="font-size:28px"><a href=''>[Slides]</a>
-				</span>
-			</center>
-		</tr>
-	</table>
-	<hr>
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/">
+                            <image src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/5cab99df4998decfbf9e218e_paper-01.png" height="50px"><br>
+                                <h5><strong>arxiv</strong></h5>
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a href="https://arxiv.org/abs/2303.14001">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>CVPR2023</strong></h5>
+                            </a>
+                        </li> -->
+                        <!-- <li>
+                            <a href="https://github.com/city-super/BungeeNeRF">
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code (Coming)</strong></h5>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a href="https://github.com/RongLiu-Leo/Video-Style-Transfer">
+                            <image src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/5cae3b53b42ebb3dd4175a82_68747470733a2f2f7777772e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6f637469636f6e732f313032342f6d61726b2d6769746875622d3235362e706e67.png" height="50px"><br>
+                                <h5><strong>Code</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
 
-	<center><h1>Code</h1></center>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <!-- <image src="img/teaser.png" class="img-responsive" alt="overview"><br> -->
+                <p class="text-justify">
+                    In this paper, we propose the Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image while preserving spatial information.
+To further enhance the style transfer process, we introduce an instance-adaptive optimization method, which adaptively fine-tunes the loss function to prioritize the photorealism of outputs. This adaptive method also accelerates the convergence of the style network, leading to rapid training completion within seconds.
+By retaining spatial information during the style transfer, IPST is well-suited for video style transfer tasks, which can be achieved by training the style transfer on the first frame and then applying the learned style to the remaining frames. Experimental results demonstrate that IPST generates consistent and photorealistic output videos, making it a promising solution for various photorealistic transfer applications.
+                </p>
+            </div>
+        </div>
 
-	<table align=center width=420px>
-		<center>
-			<tr>
-				<td>
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=400px>
-		<tr>
-			<td align=center width=400px>
-				<center>
-					<td><img class="round" style="width:450px" src="./resources/method_diagram.png"/></td>
-				</center>
-			</td>
-		</tr>
-	</table>
-	<table align=center width=850px>
-		<center>
-			<tr>
-				<td>
-					Short description if wanted
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=800px>
-		<br>
-		<tr><center>
-			<span style="font-size:28px">&nbsp;<a href='https://github.com/RongLiu-Leo/Video-Style-Transfer'>[GitHub]</a>
-			</center>
-		</span>
-	</table>
-	<br>
-	<hr>
-	<table align=center width=450px>
-		<center><h1>Paper and Supplementary Material</h1></center>
-		<tr>
-			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
-			<td><span style="font-size:14pt">F. Author, S. Author, T. Author.<br>
-				<b>Creative and Descriptive Paper Title.</b><br>
-				In Conference, 20XX.<br>
-				(hosted on <a href="">ArXiv</a>)<br>
-				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
-				<span style="font-size:4pt"><a href=""><br></a>
-				</span>
-			</td>
-		</tr>
-	</table>
-	<br>
 
-	<table align=center width=600px>
-		<tr>
-			<td><span style="font-size:14pt"><center>
-				<a href="./resources/bibtex.txt">[Bibtex]</a>
-			</center></td>
-		</tr>
-	</table>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Urban Roaming Experience
+                </h3>
+                <table>
+                    <tr>
+                        <td width="52%">
+                            <video id="v11" width="90%" autoplay loop muted controls>
+                                <source src="img/xuhui.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="47%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/xuhui2.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                </tr>
+                </table>             
+                <p class="text-justify">
+                    <strong> Example Results on Real wold Ubran Scenes.</strong> The long trajectory of rendered novel views from our model delivers an immersive experience for city roaming.
+                </p>
+            </div>
+        </div>
 
-	<hr>
-	<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+                <image src="img/framework.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of GridNeRF.</strong> Our method consists of two branches, namely the grid branch and NeRF branch, highlighted in the right boxes. 
+                    1) We start by fast capturing the scene with a pyramid of feature planes at the pre-train stage, and performing a coarse sampling of ray points and predicting 
+                    their radiance values through a shallow MLP renderer (grid branch), supervised by the MSE loss on the volumetrically integrated pixel colors. 
+                    This step yields a set of informative multi-resolution density/appearance feature plane pyramids shown on the middle.
+                    2) Next, we proceed to the joint learning stage and perform a finer sampling. We use the pre-trained feature grid to guide NeRF branch sampling to concentrate on the scene surface. 
+                    The sampled points' grid feature is inferred by bilinear interpolation on the feature planes. 
+                    The features are then concatenated with the positional encoding and fed to NeRF branch to predict volume density and color. 
+                    Note that, the grid branch maintains being supervised with the ground truth images along with NeRF's fine-rendering results.
+                </p>
+            </div>
+        </div>
 
-	<table align=center width=900px>
-		<tr>
-			<td width=400px>
-				<left>
-					<center><h1>Acknowledgements</h1></center>
-					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
-				</left>
-			</td>
-		</tr>
-	</table>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Ground Feature Maps
+                </h3>
+                <image src="img/refined.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
+                    Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
+                    Since density and appearance features are independently learned, they encode different information that describes the scene. 
+                    The appearance feature can capture environmental effects like shadows, as shown in (b).
+                </p>
 
-<br>
+
+                <image src="img/compare1.png" class="img-responsive" alt="overview"><br>
+                    <p class="text-justify">
+                        <strong> Grid Branch Outputs.</strong> Qualitative comparison showing the rendering results using features learned (a) at a moderate grid resolution (2048^2), 
+                        (b) at a high grid resolution (4096^2) and (c) from the rectified grid branch at resolution (4096^2). 
+                        Despite higher grid resolution leads to better visual quality, adding NeRF supervision pushes the quality toward photorealistic one step further.
+            
+                    </p>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Two branch outputs
+                </h3>
+                <table>
+                    <tr>
+                    <td width="100%">
+                        <video id="v11" width="100%" autoplay loop muted controls>
+                            <source src="img/Video_B_two_branch.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                </tr>
+                </table>                
+                <p class="text-justify">
+                    <strong> Rendering from two branches.</strong> Without global continuity prior, rendering from Grid branch tends to get noisy floats in the air without 3D consistency.
+                </p>
+            </div>
+        </div>
+        <br>
+
+
+        <!-- Slideshow container -->
+       
+<!--         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Links
+                </h3>
+            </div>
+        </div> -->
+
+        
+
+<!--         <div class="row" id="header_img">
+            <figure class="col-md-8 col-md-offset-2">
+                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
+                <figcaption>
+                </figcaption>
+            </figure>
+                
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Technical Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@misc{xu2023gridguided,
+    title={Grid-guided Neural Radiance Fields for Large Urban Scenes}, 
+    author={Linning Xu and Yuanbo Xiangli and Sida Peng and Xingang Pan and Nanxuan Zhao and Christian Theobalt and Bo Dai and Dahua Lin},
+    year={2023},
+    eprint={2303.14001},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+                </textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div> -->
+    </div>
 </body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
 </html>
