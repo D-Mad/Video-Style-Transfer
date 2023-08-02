@@ -1,4 +1,4 @@
-<h1 align="center"> Instant Photorealistic Style Transfer: A Lightweight and Adaptive Approach </h1>
+<h1 align="center"> Instant Photorealistic Style Transfer:<br /> A Lightweight and Adaptive Approach </h1>
 
 
 [Project Page](https://viterbi.usc.edu/directory/faculty/Easley/Scott) | [Paper](https://viterbi.usc.edu/directory/faculty/Easley/Scott)
