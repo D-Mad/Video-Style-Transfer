@@ -26,7 +26,7 @@ Instant Photorealistic Style Transfer (IPST) is designed to achieve real-time ph
 
 
 # Quickstart
-The quickstart will help you install IPST and be familiar with the command.
+The quickstart will help you install IPST and be familiar with the transfer commands.
 
 ## Installation
 
