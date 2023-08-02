@@ -50,10 +50,31 @@ pip install --upgrade pip
 
 ### Dependencies
 ```bash
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
+## Usage
 
+### Image style transfer
+For a content-style image pair, run
+```bash
+python transfer.py --content-image {content_image_path} --style-image {style_image_path}
+```
+For multiple content-style image pairs, please put them into two folders and run
+```bash
+python transfer.py --content-image-folder {content_image_folder_path} --style-image-folder {style_image_folder_path}
+```
+### Video style transfer
+```bash
+python transfer.py --content-video {content_image_path} --style-image {style_image_path}
+```
+By default, IPST will load and transfer all video frames, which performs extreme speed. However, if the number of frames is too large, it may lead to memory issues.
+
+Try to use ```--frame-by-frame``` to solve memory issues:
+```bash
+python transfer.py --content-video {content_image_path} --style-image {style_image_path} --frame-by-frame
+```
+If it is still not working, try to split the whole video into smaller videos.
 
 ### Contact
 If you are interested in this project or have questions about it, feel free to contact Rong Liu (<rliu8691@usc.edu>) and Scott Easley (<seasley@usc.edu>).
