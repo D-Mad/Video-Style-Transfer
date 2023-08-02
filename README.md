@@ -7,10 +7,14 @@
 </p>
 
 <p align="center">
-<a href="https://www.usc.edu/">University of Southern California<sup></sup></a> 
+<a href="https://www.usc.edu/">University of Southern California</a> 
 </p>
 
-[Project Page](https://viterbi.usc.edu/directory/faculty/Easley/Scott) | [Paper](https://viterbi.usc.edu/directory/faculty/Easley/Scott)
+<p align="center">
+<a href="https://rongliu-leo.github.io/Video-Style-Transfer/">Project Page</a>
+<a>  |  </a>
+<a href="https://www.usc.edu/">Paper</a> 
+</p>
 
  
 
