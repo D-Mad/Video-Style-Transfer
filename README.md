@@ -20,6 +20,8 @@
 
 
 # About
+Instant Photorealistic Style Transfer (IPST) is designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. It utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image or video while preserving spatial information. It also has an instance-adaptive optimization method to accelerate convergence, resulting in rapid training completion within seconds.
+
 
 
 
