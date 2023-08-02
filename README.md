@@ -60,7 +60,7 @@ For a content-style image pair, run
 ```bash
 python transfer.py --content-image {content_image_path} --style-image {style_image_path}
 ```
-For multiple content-style image pairs, please put them into two folders and run
+For multiple content-style image pairs, please put them into separate folders and make sure image pair names are the same and run
 ```bash
 python transfer.py --content-image-folder {content_image_folder_path} --style-image-folder {style_image_folder_path}
 ```
