@@ -32,7 +32,7 @@ The quickstart will help you install IPST and be familiar with the command.
 
 ### Prerequisites
 
-An NVIDIA video card with installed [CUDA]((https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html)).
+An NVIDIA video card with installed [CUDA](https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html).
 
 ### Clone repository
 ```bash
@@ -72,9 +72,11 @@ By default, IPST will load and transfer all video frames, which performs extreme
 
 Try to use ```--frame-by-frame``` to solve memory issues:
 ```bash
-python transfer.py --content-video {content_image_path} --style-image {style_image_path} --frame-by-frame
+python transfer.py --content-video {content_video_path} --style-image {style_image_path} --frame-by-frame
 ```
 If it is still not working, try to split the whole video into smaller videos.
 
-### Contact
+# Citation
+
+# Contact
 If you are interested in this project or have questions about it, feel free to contact Rong Liu (<rliu8691@usc.edu>) and Scott Easley (<seasley@usc.edu>).
