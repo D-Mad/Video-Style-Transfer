@@ -26,16 +26,32 @@ Instant Photorealistic Style Transfer (IPST) is designed to achieve real-time ph
 
 
 # Quickstart
-The quickstart will help you get started with the default vanilla NeRF trained on the classic Blender Lego scene. For more complex changes
+The quickstart will help you install IPST and be familiar with the command.
 
+## Installation
 
-## How to use
-    conda create --name IST -y python=3.8
-    conda activate IST
+### Prerequisites
+
+An NVIDIA video card with installed [CUDA]((https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html)).
+
+### Clone repository
+```bash
+git clone https://github.com/RongLiu-Leo/Video-Style-Transfer.git
+cd Video-Style-Transfer
+```
+
+### Create environment
+
+```bash
+conda create --name IPST -y python=3.8
+conda activate IPST
+pip install --upgrade pip
+```
+
+### Dependencies
+```bash
     pip install -r requirements.txt
-
-    python transfer.py --content-image ./dataset/input/1.png --style-image ./dataset/style/1.png
-
+```
 
 
 
