@@ -65,12 +65,11 @@ For multiple content-style image pairs, please put them into separate folders an
 python transfer.py --content-image-folder {content_image_folder_path} --style-image-folder {style_image_folder_path}
 ```
 ### Video style transfer
+By default, IPST will load and transfer all video frames, which means the batch size is equal to the number of frames. This setting achieves extreme speed but can potentially cause memory problems.
 ```bash
 python transfer.py --content-video {content_image_path} --style-image {style_image_path}
 ```
-By default, IPST will load and transfer all video frames, which performs extreme speed. However, if the number of frames is too large, it may lead to memory issues.
-
-Try to use ```--frame-by-frame``` to solve memory issues:
+Using the ```--frame-by-frame``` option will set the batch size to 1, enabling the processing of longer videos at the expense of speed.
 ```bash
 python transfer.py --content-video {content_video_path} --style-image {style_image_path} --frame-by-frame
 ```
