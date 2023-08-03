@@ -22,20 +22,19 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'UA-110862391-3');
-    </script>
+    </script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
-    <script src="js/app.js"></script>
 </head>
 
 <body>
@@ -110,7 +109,41 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 </p>
             </div>
         </div>
-
+		
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h3>
+					Demonstration
+				</h3>
+				<div class="image-comparison">
+					<div class="images-container">
+						<img class="before-image" src="dataset/images/input/5.png" alt="" />
+						<img class="after-image" src="outputs/Ours/5.png" alt="" />
+				
+						<div class="slider-line"></div>
+						<div class="slider-icon">
+							<svg 
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-6 h-6"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+								/>
+							</svg>
+						</div>
+						
+						<input type="range" class="slider" min="0" max="100" />
+					</div>
+				</div>
+			</div>
+			<script src="js/main.js"></script>
+		</div>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
