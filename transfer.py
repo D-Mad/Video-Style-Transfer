@@ -202,7 +202,7 @@ class IST(nn.Module):
         best_loss = float('inf')  
         patience = 10 
         early_stop_counter = 0  
-        for epoch in range(0, 150):
+        for epoch in tqdm(range(0, 150)):
             target = self.forward(self.content)
             content_loss, style_loss = self.get_loss(target)
             if epoch==0:
@@ -214,6 +214,7 @@ class IST(nn.Module):
             loss.backward()
             optimizer.step()
             normalized_loss = loss.item()/initial_loss
+            # plt.imsave(f'outputs/{epoch}.jpg', im_convert(target))
 
             if normalized_loss < best_loss - 0.01:
                 best_loss = normalized_loss
