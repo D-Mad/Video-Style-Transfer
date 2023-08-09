@@ -173,18 +173,15 @@ By retaining spatial information during the style transfer, IPST is well-suited 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Framework
+                    Lightweight Photorealistic StyleNet
                 </h3>
                 <image src="./asset/stylenet_miles.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    <strong> Overview of GridNeRF.</strong> Our method consists of two branches, namely the grid branch and NeRF branch, highlighted in the right boxes. 
-                    1) We start by fast capturing the scene with a pyramid of feature planes at the pre-train stage, and performing a coarse sampling of ray points and predicting 
-                    their radiance values through a shallow MLP renderer (grid branch), supervised by the MSE loss on the volumetrically integrated pixel colors. 
-                    This step yields a set of informative multi-resolution density/appearance feature plane pyramids shown on the middle.
-                    2) Next, we proceed to the joint learning stage and perform a finer sampling. We use the pre-trained feature grid to guide NeRF branch sampling to concentrate on the scene surface. 
-                    The sampled points' grid feature is inferred by bilinear interpolation on the feature planes. 
-                    The features are then concatenated with the positional encoding and fed to NeRF branch to predict volume density and color. 
-                    Note that, the grid branch maintains being supervised with the ground truth images along with NeRF's fine-rendering results.
+                    <strong> Illustration of Lightweight Photorealistic StyleNet.</strong> The StyleNet operates through a sequential process. 
+                    1) It begins by normalizing the given input using the mean and standard deviation values derived from the ImageNet dataset. The StyleNet then diverges into two branches: a style transfer branch and a content shortcut branch. 
+                    2) Within the style transfer branch, the input is resized to the HD resolution, ensuring the resolution-agnosticism and effective computation of the network.  The style branch comprises a lightweight and compact neural network designed for applying color transformation. Notably, the transformations exclusively manipulate input channels while preserving the spatial information untouched. The outcome of this diminutive neural network is a color transformation mask, which is subsequently resized to match the original resolution, serving as the ultimate output from the style transfer branch. 
+                    Concurrently, the content shortcut branch executes an identity mapping process, thereby aiding the preservation of spatial information within the StyleNet. 
+                    3) Upon completing their respective tasks, the outputs from the two branches are added and then denormalized to generate the final output.
                 </p>
             </div>
         </div>
