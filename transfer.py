@@ -214,7 +214,7 @@ class IST(nn.Module):
             loss.backward()
             optimizer.step()
             normalized_loss = loss.item()/initial_loss
-            # plt.imsave(f'outputs/{epoch}.jpg', im_convert(target))
+            # plt.imsave(f'outputs/{epoch}.png', im_convert(target))
 
             if normalized_loss < best_loss - 0.01:
                 best_loss = normalized_loss
@@ -227,6 +227,8 @@ class IST(nn.Module):
         
 
 def main():
+    seed = 0
+    torch.manual_seed(seed)
     parser = argparse.ArgumentParser(description='Image Style Transfer')
 
     # Specify content and style image paths
@@ -243,7 +245,13 @@ def main():
     args = parser.parse_args()
 
     # Check if CUDA is available
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
+    np.random.seed(seed)
     print(torch.__version__, device)    
     output_folder = args.output_folder
     os.makedirs(output_folder, exist_ok=True)
