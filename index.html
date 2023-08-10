@@ -142,7 +142,6 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 					</div>
 				</div>
 			</div>
-			<script src="js/main.js"></script>
 		</div>
 
         <div class="row">
@@ -150,7 +149,37 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 <h3>
                     Urban Roaming Experience
                 </h3>
-                <table>
+                <div class="vid-comparison">
+                    <div class="vid-container">
+                        <video class="before-vid" autoplay loop muted>
+                            <source src="dataset/videos/input/1.mp4" type="video/mp4" />
+                        </video>
+                        <video class="after-vid" autoplay loop muted>
+                            <source src="outputs/Ours/videos/1.mp4" type="video/mp4" />
+                        </video>
+                        
+                        <div class="vslider-line"></div>
+						<div class="vslider-icon">
+							<svg 
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-6 h-6"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+								/>
+							</svg>
+						</div>
+						
+						<input type="range" class="vslider" min="0" max="100" />
+                    </div>
+                </div>
+                <!-- <table>
                     <tr>
                         <td width="52%">
                             <video id="v11" width="90%" autoplay loop muted controls>
@@ -158,12 +187,12 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                             </video>
                         </td>
                         <td width="47%">
-                            <video id="v12" width="100%" autoplay loop muted controls>
-                                <source src="img/xuhui2.mp4" type="video/mp4" />
+                            <video id="v12" width="100%" autoplay loop muted>
+                                <source src="outputs/Ours/videos/1.mp4" type="video/mp4" />
                             </video>
                         </td>
                 </tr>
-                </table>             
+                </table>              -->
                 <p class="text-justify">
                     <strong> Example Results on Real wold Ubran Scenes.</strong> The long trajectory of rendered novel views from our model delivers an immersive experience for city roaming.
                 </p>
@@ -299,6 +328,7 @@ By retaining spatial information during the style transfer, IPST is well-suited 
             </div>
         </div> -->
     </div>
+    <script src="js/main.js"></script>
 </body>
 
 	<script type="text/javascript">
