@@ -218,9 +218,9 @@ By retaining spatial information during the style transfer, IPST is well-suited 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Ground Feature Maps
+                    Instant Photorealistic Style Transfer (IPST) Pipeline
                 </h3>
-                <image src="img/refined.png" class="img-responsive" alt="overview"><br>
+                <image src="img/pipeline.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
                     <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
                     Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
@@ -229,73 +229,9 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 </p>
 
 
-                <image src="img/compare1.png" class="img-responsive" alt="overview"><br>
-                    <p class="text-justify">
-                        <strong> Grid Branch Outputs.</strong> Qualitative comparison showing the rendering results using features learned (a) at a moderate grid resolution (2048^2), 
-                        (b) at a high grid resolution (4096^2) and (c) from the rectified grid branch at resolution (4096^2). 
-                        Despite higher grid resolution leads to better visual quality, adding NeRF supervision pushes the quality toward photorealistic one step further.
             
-                    </p>
-                </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Two branch outputs
-                </h3>
-                <table>
-                    <tr>
-                    <td width="100%">
-                        <video id="v11" width="100%" autoplay loop muted controls>
-                            <source src="img/Video_B_two_branch.mp4" type="video/mp4" />
-                        </video>
-                    </td>
-                </tr>
-                </table>                
-                <p class="text-justify">
-                    <strong> Rendering from two branches.</strong> Without global continuity prior, rendering from Grid branch tends to get noisy floats in the air without 3D consistency.
-                </p>
-            </div>
-        </div>
-        <br>
-
-
-        <!-- Slideshow container -->
-       
-<!--         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Links
-                </h3>
-            </div>
-        </div> -->
-
-        
-
-<!--         <div class="row" id="header_img">
-            <figure class="col-md-8 col-md-offset-2">
-                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
-                <figcaption>
-                </figcaption>
-            </figure>
-                
-        </div> -->
-
+            
         <!-- <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Technical Video
-                </h3>
-                <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-            
-        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     BibTeX
@@ -313,10 +249,10 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 </textarea>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Acknowledgements
@@ -326,7 +262,7 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
                 </p>
             </div>
-        </div> -->
+        </div>
     </div>
     <script src="js/main.js"></script>
 </body>
