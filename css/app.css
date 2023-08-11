@@ -224,3 +224,35 @@
   color: #fff;
   transform: translate(-50%, -50%) rotateZ(90deg);
 }
+
+.thumbnail-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #2065dd;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.image-display img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-display {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: auto;
+  justify-content: center;
+}

@@ -23,3 +23,14 @@ vid_slider.addEventListener("input", (e) => {
     vid_sliderLine.style.left = sliderValue;
     vid_sliderIcon.style.left = sliderValue;
 });
+
+function showImage(beforePath, stylePath, afterPath) {
+    const before = document.getElementById("before-image");
+    const content = document.getElementById("content");
+    const style = document.getElementById("style");
+    const after = document.getElementById("after-image");
+    before.src = beforePath;
+    content.src = beforePath;
+    style.src = stylePath;
+    after.src = afterPath;
+}

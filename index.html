@@ -101,7 +101,7 @@
                 <table>
                     <tr>
                         <td width="52%">
-                            <video id="v11" width="90%" autoplay loop muted controls>
+                            <video id="v11" width="90%" autoplay loop muted>
                                 <source src="dataset/videos/input/1.mp4" type="video/mp4" />
                             </video>
                         </td>
@@ -133,10 +133,21 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 				<h4>
 					Image Style Transfer Comparison
 				</h4>
+                <div class="thumbnail-container">
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/5.png');" onclick="showImage('dataset/images/input/5.png', 'dataset/images/style/5.png', 'outputs/Ours/images/5.png')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/3.png');" onclick="showImage('dataset/images/input/3.png', 'dataset/images/style/3.png', 'outputs/Ours/images/3.png')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showImage('dataset/images/input/1.png', 'dataset/images/style/1.png', 'outputs/Ours/images/1.png')"></button>
+                </div>
+
+                <div class="image-display">
+                    <img id="content" src="dataset/images/input/5.png" alt="Displayed Image 1">
+                    <img id="style" src="dataset/images/style/5.png" alt="Displayed Image 2">
+                </div>
+
 				<div class="image-comparison">
 					<div class="images-container">
-						<img class="before-image" src="dataset/images/input/5.png" alt="" />
-						<img class="after-image" src="outputs/Ours/images/5.png" alt="" />
+						<img class="before-image" id="before-image" src="dataset/images/input/5.png" alt="" />
+						<img class="after-image" id="after-image" src="outputs/Ours/images/5.png" alt="" />
 				
 						<div class="slider-line"></div>
 						<div class="slider-icon">
