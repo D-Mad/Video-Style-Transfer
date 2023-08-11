@@ -213,10 +213,7 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 </h4>
                 <image src="./asset/pipeline.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
-                    Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
-                    Since density and appearance features are independently learned, they encode different information that describes the scene. 
-                    The appearance feature can capture environmental effects like shadows, as shown in (b).
+                    <strong> Overview of Instant Photorealistic Style Transfer (IPST) pipeline.</strong>
                 </p>
             </div>
         </div>    
@@ -227,7 +224,7 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 </h4>
                 <image src="./asset/stylenet.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    <strong> Illustration of Lightweight Photorealistic StyleNet.</strong> The StyleNet operates through a sequential process. 
+                    <strong> Architecture of Lightweight Photorealistic StyleNet.</strong> The StyleNet operates through a sequential process. 
                     1) It begins by normalizing the given input using the mean and standard deviation values derived from the ImageNet dataset. The StyleNet then diverges into two branches: a style transfer branch and a content shortcut branch. 
                     2) Within the style transfer branch, the input is resized to the HD resolution, ensuring the resolution-agnosticism and effective computation of the network.  The style branch comprises a lightweight and compact neural network designed for applying color transformation. Notably, the transformations exclusively manipulate input channels while preserving the spatial information untouched. The outcome of this diminutive neural network is a color transformation mask, which is subsequently resized to match the original resolution, serving as the ultimate output from the style transfer branch. 
                     Concurrently, the content shortcut branch executes an identity mapping process, thereby aiding the preservation of spatial information within the StyleNet. 
