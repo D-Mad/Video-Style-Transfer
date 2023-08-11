@@ -98,10 +98,25 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                <table>
+                    <tr>
+                        <td width="52%">
+                            <video id="v11" width="90%" autoplay loop muted controls>
+                                <source src="dataset/videos/input/1.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="47%">
+                            <video id="v12" width="100%" autoplay loop muted>
+                                <source src="outputs/Ours/videos/1.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                </tr>
+                </table> 
                 <h3>
                     Abstract
                 </h3>
                 <!-- <image src="img/teaser.png" class="img-responsive" alt="overview"><br> -->
+                            
                 <p class="text-justify">
                     In this paper, we propose the Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image while preserving spatial information.
 To further enhance the style transfer process, we introduce an instance-adaptive optimization method, which adaptively fine-tunes the loss function to prioritize the photorealism of outputs. This adaptive method also accelerates the convergence of the style network, leading to rapid training completion within seconds.
@@ -112,9 +127,12 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 		
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<h3>
-					Demonstration
-				</h3>
+                <h3>
+                    Results
+                </h3>
+				<h4>
+					Image Style Transfer Comparison
+				</h4>
 				<div class="image-comparison">
 					<div class="images-container">
 						<img class="before-image" src="dataset/images/input/5.png" alt="" />
@@ -146,9 +164,9 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Urban Roaming Experience
-                </h3>
+                <h4>
+                    Video Style Transfer Comparison
+                </h4>
                 <div class="vid-comparison">
                     <div class="vid-container">
                         <video class="before-vid" autoplay loop muted>
@@ -179,31 +197,31 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 						<input type="range" class="vslider" min="0" max="100" />
                     </div>
                 </div>
-                <!-- <table>
-                    <tr>
-                        <td width="52%">
-                            <video id="v11" width="90%" autoplay loop muted controls>
-                                <source src="img/xuhui.mp4" type="video/mp4" />
-                            </video>
-                        </td>
-                        <td width="47%">
-                            <video id="v12" width="100%" autoplay loop muted>
-                                <source src="outputs/Ours/videos/1.mp4" type="video/mp4" />
-                            </video>
-                        </td>
-                </tr>
-                </table>              -->
-                <p class="text-justify">
-                    <strong> Example Results on Real wold Ubran Scenes.</strong> The long trajectory of rendered novel views from our model delivers an immersive experience for city roaming.
-                </p>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Lightweight Photorealistic StyleNet
+                    Approach
                 </h3>
+                <h4>
+                    Instant Photorealistic Style Transfer (IPST) Pipeline
+                </h4>
+                <image src="./asset/pipeline.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
+                    Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
+                    Since density and appearance features are independently learned, they encode different information that describes the scene. 
+                    The appearance feature can capture environmental effects like shadows, as shown in (b).
+                </p>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>
+                    Lightweight Photorealistic StyleNet
+                </h4>
                 <image src="./asset/stylenet_miles.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
                     <strong> Illustration of Lightweight Photorealistic StyleNet.</strong> The StyleNet operates through a sequential process. 
@@ -215,19 +233,7 @@ By retaining spatial information during the style transfer, IPST is well-suited 
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Instant Photorealistic Style Transfer (IPST) Pipeline
-                </h3>
-                <image src="./asset/pipeline.png" class="img-responsive" alt="overview"><br>
-                <p class="text-justify">
-                    <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
-                    Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
-                    Since density and appearance features are independently learned, they encode different information that describes the scene. 
-                    The appearance feature can capture environmental effects like shadows, as shown in (b).
-                </p>
-
+        
 
             
             
@@ -248,19 +254,6 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 }
                 </textarea>
                 </div>
-            </div>
-        </div> -->
-
-
-        <!-- <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Acknowledgements
-                </h3>
-                <p class="text-justify">
-                
-                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
-                </p>
             </div>
         </div> -->
     </div>
