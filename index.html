@@ -139,9 +139,14 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showImage('dataset/images/input/1.png', 'dataset/images/style/1.png', 'outputs/Ours/images/1.png')"></button>
                 </div>
 
+                <div id="image-labels">
+                    <h4 style="font-weight: bolder">Content</h4>
+                    <h4 style="font-weight: bolder">Style</h4>
+                </div>
+
                 <div class="image-display">
-                    <img id="content" src="dataset/images/input/5.png" alt="Displayed Image 1">
-                    <img id="style" src="dataset/images/style/5.png" alt="Displayed Image 2">
+                    <img id="content" src="dataset/images/input/5.png" style="border-radius: 15px 0 0 15px;" alt="Displayed Image 1">
+                    <img id="style" src="dataset/images/style/5.png" style="border-radius: 0 15px 15px 0;" alt="Displayed Image 2">
                 </div>
 
 				<div class="image-comparison">
@@ -227,7 +232,8 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                     Since density and appearance features are independently learned, they encode different information that describes the scene. 
                     The appearance feature can capture environmental effects like shadows, as shown in (b).
                 </p>
-                
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h4>
