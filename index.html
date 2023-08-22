@@ -219,6 +219,9 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                 <image src="./asset/pipeline.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
                     <strong> Overview of Instant Photorealistic Style Transfer (IPST) pipeline.</strong>
+                    IPST consists of a key component and is divided into two stages: the StyleNet, and the stages of training and inference. The StyleNet takes a single image as input and generates the transferred output. In the initial training stage, the output of StyleNet cannot accurately capture the desired transformation due to its limited training. However, as the training progresses, StyleNet becomes proficient at generating outputs that closely mirror the style reference image.
+                    Throughout the training process, we employ a foundational loss inspired by Gaty's work, while incorporating an adaptive optimization method. This method includes an adaptive loss and an early stopping technique, which collectively accelerate the training process.
+                    For the task of image transfer, only the training stage is required. In cases where a set of images with contextual consistency serves as input, the first image goes through the training stage, while the subsequent images undergo the inference stage. During the inference stage, the StyleNet, now equipped with learned style transformation, is directly applied to the following images.
                 </p>
             </div>
         </div>
