@@ -257,10 +257,36 @@
   justify-content: center;
 }
 
-#image-labels {
+.image-labels {
   display: flex;
   width: 47%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-between;
+}
+/* 
+#vid-content {
+  height: auto;
+} */
+
+.vid-image-display {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  width: 47%;
+  justify-content: center;
+}
+
+.vid-image-display img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+.vid-image-display video {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 30px 0 0 30px;
+  justify-content: center;
 }
