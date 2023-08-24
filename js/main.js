@@ -34,3 +34,14 @@ function showImage(beforePath, stylePath, afterPath) {
     style.src = stylePath;
     after.src = afterPath;
 }
+
+function showVideo(beforePath, stylePath, afterPath) {
+    const before = document.getElementById("before-vid");
+    const content = document.getElementById("vid-content");
+    const style = document.getElementById("vid-style");
+    const after = document.getElementById("after-vid");
+    before.src = beforePath;
+    content.src = beforePath;
+    style.src = stylePath;
+    after.src = afterPath;
+}

@@ -128,6 +128,8 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/5.png');" onclick="showImage('dataset/images/input/5.png', 'dataset/images/style/5.png', 'outputs/Ours/images/5.png')"></button>
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/3.png');" onclick="showImage('dataset/images/input/3.png', 'dataset/images/style/3.png', 'outputs/Ours/images/3.png')"></button>
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showImage('dataset/images/input/1.png', 'dataset/images/style/1.png', 'outputs/Ours/images/1.png')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/2.png');" onclick="showImage('dataset/images/input/2.png', 'dataset/images/style/2.png', 'outputs/Ours/images/2.png')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/4.png');" onclick="showImage('dataset/images/input/4.png', 'dataset/images/style/4.png', 'outputs/Ours/images/4.png')"></button>
                 </div>
 
                 <div class="image-labels">
@@ -175,6 +177,12 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                     Video Style Transfer Comparison
                 </h4>
 
+                <div class="thumbnail-container">
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/5.png');" onclick="showVideo('dataset/videos/input/1.mp4', 'dataset/videos/style/1.png', 'outputs/Ours/videos/1.mp4')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/3.png');" onclick="showVideo('dataset/videos/input/2.mp4', 'dataset/videos/style/2.png', 'outputs/Ours/videos/2.mp4')"></button>
+                    <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showVideo('dataset/videos/input/3.mp4', 'dataset/videos/style/3.png', 'outputs/Ours/videos/3.mp4')"></button>
+                </div>
+
                 <div class="image-labels">
                     <h4 style="font-weight: bolder">Content</h4>
                     <h4 style="font-weight: bolder">Style</h4>
@@ -187,15 +195,15 @@ By retaining spatial information during the style transfer, IPST is well-suited 
                         </video>
                     <!-- </div> -->
                     <!-- <img id="content" src="dataset/images/input/5.png" style="border-radius: 15px 0 0 15px;" alt="Displayed Image 1"> -->
-                    <img src="dataset/videos/style/1.png" style="border-radius: 0 15px 15px 0;" alt="Displayed Image 2">
+                    <img id="vid-style" src="dataset/videos/style/1.png" style="border-radius: 0 15px 15px 0;" alt="Displayed Image 2">
                 </div>
 
                 <div class="vid-comparison">
                     <div class="vid-container">
-                        <video class="before-vid" autoplay loop muted>
+                        <video id="before-vid" class="before-vid" autoplay loop muted>
                             <source src="dataset/videos/input/1.mp4" type="video/mp4" />
                         </video>
-                        <video class="after-vid" autoplay loop muted>
+                        <video id="after-vid" class="after-vid" autoplay loop muted>
                             <source src="outputs/Ours/videos/1.mp4" type="video/mp4" />
                         </video>
                         
