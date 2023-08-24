@@ -103,25 +103,26 @@
                     <source src="asset/underwater.mp4" type="video/mp4" />
                 </video>
                 
-                <h3>
+                <h3 class="text-center">
                     Abstract
                 </h3>
                 <!-- <image src="img/teaser.png" class="img-responsive" alt="overview"><br> -->
                             
                 <p class="text-justify">
-                    In this paper, we propose the Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image while preserving spatial information.
-To further enhance the style transfer process, we introduce an instance-adaptive optimization method, which adaptively fine-tunes the loss function to prioritize the photorealism of outputs. This adaptive method also accelerates the convergence of the style network, leading to rapid training completion within seconds.
-By retaining spatial information during the style transfer, IPST is well-suited for video style transfer tasks, which can be achieved by training the style transfer on the first frame and then applying the learned style to the remaining frames. Experimental results demonstrate that IPST generates consistent and photorealistic output videos, making it a promising solution for various photorealistic transfer applications.
+                    In this paper, we propose an Instant Photorealistic Style Transfer (IPST) pipeline, designed to achieve 
+                    instant photorealistic style transfer on 4K-resolution inputs without the need for pre-training using pair-wise datasets. Our method utilizes a lightweight photorealistic StyleNet to enable style transfer from a style image to a content image while preserving non-color information.
+                    To further enhance the style transfer process, we introduce an instance-adaptive optimization method to fine-tune the loss function to prioritize the photorealism of outputs and also accelerate the convergence of the style network, leading to rapid training completion within seconds.
+                    By retaining spatial and multi-view consistency of the inputs, IPST is well-suited for video and NeRF style transfer tasks, which can be achieved by training the style transfer on the first image and then applying the trained StyleNet to the remaining images. Experimental results demonstrate that IPST generates photorealistic and consistent outputs, making it a promising solution for various photorealistic transfer applications.
                 </p>
             </div>
         </div>
 		
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-                <h3>
+                <h3 class="text-center">
                     Results
                 </h3>
-				<h4>
+				<h4 class="text-center">
 					Image Style Transfer Comparison
 				</h4>
                 <div class="thumbnail-container">
@@ -173,14 +174,13 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4>
+                <h4 class="text-center">
                     Video Style Transfer Comparison
                 </h4>
 
                 <div class="thumbnail-container">
-                    <button class="thumbnail1" style="background-image: url('dataset/images/input/5.png');" onclick="showVideo('dataset/videos/input/1.mp4', 'dataset/videos/style/1.png', 'outputs/Ours/videos/1.mp4')"></button>
-                    <button class="thumbnail1" style="background-image: url('dataset/images/input/3.png');" onclick="showVideo('dataset/videos/input/2.mp4', 'dataset/videos/style/2.png', 'outputs/Ours/videos/2.mp4')"></button>
-                    <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showVideo('dataset/videos/input/3.mp4', 'dataset/videos/style/3.png', 'outputs/Ours/videos/3.mp4')"></button>
+                    <button onclick="showVideo('dataset/videos/input/1.mp4', 'dataset/videos/style/1.png', 'outputs/Ours/videos/1.mp4')">Seasonal Change</button>
+                    <button onclick="showVideo('dataset/videos/input/2.mp4', 'dataset/videos/style/2.png', 'outputs/Ours/videos/2.mp4')">Underwater Correction</button>
                 </div>
 
                 <div class="image-labels">
@@ -234,10 +234,10 @@ By retaining spatial information during the style transfer, IPST is well-suited 
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>
+                <h3 class="text-center">
                     Approach
                 </h3>
-                <h4>
+                <h4 class="text-center">
                     Instant Photorealistic Style Transfer (IPST) Pipeline
                 </h4>
                 <image src="./asset/pipeline.png" class="img-responsive" alt="overview"><br>
@@ -251,15 +251,16 @@ By retaining spatial information during the style transfer, IPST is well-suited 
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4>
+                <h4 class="text-center">
                     Lightweight Photorealistic StyleNet
                 </h4>
                 <image src="./asset/stylenet.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    <strong> Architecture of Lightweight Photorealistic StyleNet.</strong> The StyleNet operates through a sequential process. 
+                    <strong> Architecture of Lightweight Photorealistic StyleNet.</strong> 
+                    The StyleNet operates through a sequential process. 
                     1) It begins by normalizing the given input using the mean and standard deviation values derived from the ImageNet dataset. The StyleNet then diverges into two branches: a style transfer branch and a content shortcut branch. 
-                    2) Within the style transfer branch, the input is resized to the HD resolution, ensuring the resolution-agnosticism and effective computation of the network.  The style branch comprises a lightweight and compact neural network designed for applying color transformation. Notably, the transformations exclusively manipulate input channels while preserving the spatial information untouched. The outcome of this diminutive neural network is a color transformation mask, which is subsequently resized to match the original resolution, serving as the ultimate output from the style transfer branch. 
-                    Concurrently, the content shortcut branch executes an identity mapping process, thereby aiding the preservation of spatial information within the StyleNet. 
+                    2) Within the style transfer branch, the input is resized to the SD (480p) resolution, ensuring the resolution-agnosticism and effective computation of the network.  The style branch comprises a lightweight and compact neural network designed for applying color transformation. Notably, the transformations exclusively manipulate input channels while preserving the spatial information untouched. The outcome of this diminutive neural network is a color transformation mask, which is subsequently resized to match the original resolution, serving as the ultimate output from the style transfer branch. 
+                    Concurrently, the content shortcut branch executes an identity mapping process, thereby aiding the preservation of non-color information within the StyleNet. 
                     3) Upon completing their respective tasks, the outputs from the two branches are added and then denormalized to generate the final output.
                 </p>
             </div>
