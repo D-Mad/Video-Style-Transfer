@@ -8,6 +8,11 @@ const beforeVid = document.querySelector(".vid-comparison .before-vid");
 const vid_sliderLine = document.querySelector(".vid-comparison .vslider-line");
 const vid_sliderIcon = document.querySelector(".vid-comparison .vslider-icon");
 
+const nerf_slider = document.querySelector(".nerf-comparison .nslider");
+const beforeNerf = document.querySelector(".nerf-comparison .before-nerf");
+const nerf_sliderLine = document.querySelector(".nerf-comparison .nslider-line");
+const nerf_sliderIcon = document.querySelector(".nerf-comparison .nslider-icon");
+
 slider.addEventListener("input", (e) => {
     let sliderValue = e.target.value + "%";
 
@@ -22,6 +27,14 @@ vid_slider.addEventListener("input", (e) => {
     beforeVid.style.width = sliderValue;
     vid_sliderLine.style.left = sliderValue;
     vid_sliderIcon.style.left = sliderValue;
+});
+
+nerf_slider.addEventListener("input", (e) => {
+    let sliderValue = e.target.value + "%";
+
+    beforeNerf.style.width = sliderValue;
+    nerf_sliderLine.style.left = sliderValue;
+    nerf_sliderIcon.style.left = sliderValue;
 });
 
 function showImage(beforePath, stylePath, afterPath) {

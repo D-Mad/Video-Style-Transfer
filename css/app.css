@@ -225,6 +225,57 @@
   transform: translate(-50%, -50%) rotateZ(90deg);
 }
 
+.nerf-comparison {
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.nerf-comparison video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+}
+
+.nerf-comparison .nerf-container {
+  position: relative;
+  display: flex;
+}
+
+.nerf-comparison .nerf-container .before-nerf {
+  position: absolute;
+  top: 0;
+  width: 50%;
+}
+
+.nerf-comparison .nslider {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nerf-comparison .nslider-line {
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  background: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nerf-comparison .nslider-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  transform: translate(-50%, -50%) rotateZ(90deg);
+}
+
 .thumbnail-container {
   display: flex;
   gap: 10px;

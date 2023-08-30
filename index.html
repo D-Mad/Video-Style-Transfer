@@ -226,6 +226,61 @@
             </div>
         </div>
 
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h4 class="text-center">
+                    NeRF Style Transfer Comparison
+                </h4>
+
+                <div class="image-labels">
+                    <h4 style="font-weight: bolder">Input</h4>
+                    <h4 style="font-weight: bolder">Style</h4>
+                </div>
+
+                <div class="vid-image-display">
+                    <!-- <div> -->
+                        <video id="vid-content" autoplay loop muted>
+                            <source src="dataset/videos/input/3.mp4" type="video/mp4" />
+                        </video>
+                    <!-- </div> -->
+                    <!-- <img id="content" src="dataset/images/input/5.png" style="border-radius: 15px 0 0 15px;" alt="Displayed Image 1"> -->
+                    <img id="vid-style" src="dataset/videos/style/3.jpg" style="border-radius: 0 15px 15px 0;" alt="Displayed Image 2">
+                </div>
+
+                <div class="nerf-comparison">
+                    <div class="nerf-container">
+                        <video id="before-nerf" class="before-nerf" autoplay loop muted>
+                            <source src="outputs/Ours/videos/day.mp4" type="video/mp4" />
+                        </video>
+                        <video id="after-nerf" class="after-nerf" autoplay loop muted>
+                            <source src="outputs/Ours/videos/night.mp4" type="video/mp4" />
+                        </video>
+                        
+                        <div class="nslider-line"></div>
+						<div class="nslider-icon">
+							<svg 
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-6 h-6"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+								/>
+							</svg>
+						</div>
+						
+						<input type="range" class="nslider" min="0" max="100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
        
 
 
