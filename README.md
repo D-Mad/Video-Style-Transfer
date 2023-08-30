@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-<a href="https://www.usc.edu/">University of Southern California</a> 
+<p style="color:#990000;">University of Southern California</p> 
 </p>
 
 <p align="center">
