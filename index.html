@@ -133,7 +133,7 @@
 				<h4 class="text-center" style="font-weight: bolder;">
 					Image Style Transfer Comparison
 				</h4>
-                <div class="thumbnail-container">
+                <div class="thumbnail-container" style="margin-bottom: 0px;">
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/5.png');" onclick="showImage('dataset/images/input/5.png', 'dataset/images/style/5.png', 'outputs/Ours/images/5.png')"></button>
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/3.png');" onclick="showImage('dataset/images/input/3.png', 'dataset/images/style/3.png', 'outputs/Ours/images/3.png')"></button>
                     <button class="thumbnail1" style="background-image: url('dataset/images/input/1.png');" onclick="showImage('dataset/images/input/1.png', 'dataset/images/style/1.png', 'outputs/Ours/images/1.png')"></button>
@@ -142,8 +142,8 @@
                 </div>
 
                 <div class="image-labels">
-                    <h4 style="font-weight: normal">Input</h4>
-                    <h4 style="font-weight: normal">Style</h4>
+                    <h5 style="font-weight: normal">Input</h5>
+                    <h5 style="font-weight: normal">Style</h5>
                 </div>
 
                 <div class="image-display">
@@ -177,19 +177,18 @@
 						<input type="range" class="slider" min="0" max="100" />
 					</div>
 				</div>
-                <hr>
 			</div>
 		</div>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4 class="text-center" style="font-weight: bolder">
+                <h4 class="text-center" style="font-weight: bolder;margin-top: 20px;margin-bottom: 0px;">
                     Video Style Transfer Comparison
                 </h4>
 
                 <div class="image-labels">
-                    <h4 style="font-weight: normal">Input</h4>
-                    <h4 style="font-weight: normal">Style</h4>
+                    <h5 style="font-weight: normal">Input</h5>
+                    <h5 style="font-weight: normal">Style</h5>
                 </div>
 
                 <div class="vid-image-display">
@@ -232,20 +231,19 @@
 						<input type="range" class="vslider" min="0" max="100" />
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4 class="text-center" style="font-weight: bolder">
+                <h4 class="text-center" style="font-weight: bolder;margin-top: 20px;margin-bottom: 0px;">
                     NeRF Style Transfer Comparison
                 </h4>
 
                 <div class="image-labels">
-                    <h4 style="font-weight: normal">Input</h4>
-                    <h4 style="font-weight: normal">Style</h4>
+                    <h5 style="font-weight: normal">Input</h5>
+                    <h5 style="font-weight: normal">Style</h5>
                 </div>
 
                 <div class="vid-image-display">
@@ -310,12 +308,11 @@
                     Throughout the training process, we employ an adaptive optimization method including an adaptive loss and an early stopping technique, which collectively accelerate the training process.
                     For the task of image transfer, only the training stage is required. In cases where a set of images with contextual consistency serves as input, the first image goes through the training stage, while the subsequent images undergo the inference stage. During the inference stage, the StyleNet, now equipped with learned style transformation, is directly applied to the following images.
                 </p>
-                <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h4 class="text-center" style="font-weight: bolder">
+                <h4 class="text-center" style="font-weight: bolder;margin-top: 20px;margin-bottom: 0px;">
                     Lightweight Photorealistic StyleNet
                 </h4>
                 <image src="./asset/stylenet.png" class="img-responsive" alt="overview"><br>
