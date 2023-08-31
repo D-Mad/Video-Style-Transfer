@@ -172,7 +172,7 @@ class IST(nn.Module):
         return gram_matrix
     
     def get_features(self, image, model):
-        layers = {'0': 'conv1_1', '5': 'conv2_1', '10': 'conv3_1', '19': 'conv4_1', '21': 'conv4_2', '28': 'conv5_1'}
+        layers = {'0': 'conv1_1', '5': 'conv2_1', '10': 'conv3_1', '19': 'conv4_1', '28': 'conv5_1'}
         features = {}
         x = image
         for name, layer in model._modules.items():
