@@ -186,7 +186,7 @@ class IST(nn.Module):
         target_features = self.get_features(transforms.functional.resize(target, self.resolution, antialias=True), self.VGG)
         content_loss = torch.mean((target_features['conv4_1'] - self.content_features['conv4_1']) ** 2)
         style_loss = 0
-        style_weights = {'conv1_1': 0.1, 'conv2_1': 0.2, 'conv3_1': 0.4, 'conv4_1': 0.8, 'conv5_1': 1.6}
+        style_weights = {'conv1_1': 1, 'conv2_1': 1, 'conv3_1': 1, 'conv4_1': 1, 'conv5_1': 1}
         for layer in style_weights:
             target_feature = target_features[layer]  
             target_gram_matrix = self.get_grim_matrix(target_feature)
