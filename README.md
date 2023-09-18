@@ -1,13 +1,18 @@
 <h1 align="center"> Instant Photorealistic Style Transfer:<br /> A Lightweight and Adaptive Approach </h1>
 <p align="center">
-<a style="color:#000000;" href="https://rongliu-leo.github.io/">Rong Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a style="color:#000000;" href="https://www.linkedin.com/in/enyu-zhao-564566250/">Enyu Zhao</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a style="color:#000000;" href="https://www.linkedin.com/in/liuzy98/">Zhiyuan Liu</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a style="color:#000000;" href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley</a>
+<a style="color:#000000;" href="https://rongliu-leo.github.io/">Rong Liu<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://www.linkedin.com/in/enyu-zhao-564566250/">Enyu Zhao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://www.linkedin.com/in/liuzy98/">Zhiyuan Liu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="">Andrew Wei-Wen Feng<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley<sup>1</sup></a>
 </p>
 
 <p align="center">
-<a href="https://www.usc.edu/">University of Southern California</a> 
+<a href="https://www.usc.edu/"><sup>1</sup>University of Southern California</a> 
+</p>
+
+<p align="center">
+<a href="https://www.usc.edu/"><sup>2</sup>USC Institute for Creative Technologies</a> 
 </p>
 
 <p align="center">
