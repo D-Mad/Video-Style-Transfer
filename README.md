@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-<a href="https://www.usc.edu/"><sup>2</sup>USC Institute for Creative Technologies</a> 
+<a href="https://ict.usc.edu/"><sup>2</sup>USC Institute for Creative Technologies</a> 
 </p>
 
 <p align="center">
