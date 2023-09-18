@@ -16,11 +16,16 @@
 <a href="https://www.usc.edu/">Paper</a> 
 </p>
 
- 
+ <p align="center">
+<image src="asset/teaser.png">
+</p>
 
 
 # About
-Instant Photorealistic Style Transfer (IPST) is designed to achieve real-time photorealistic style transfer on 4K-resolution images and videos without the need for pre-training using pair-wise datasets. It utilizes a lightweight style network to enable instant photorealistic style transfer from a style image to a content image or video while preserving spatial information. It also has an instance-adaptive optimization method to accelerate convergence, resulting in rapid training completion within seconds.
+Instant Photorealistic Style Transfer (IPST) approach is designed to achieve 
+instant photorealistic style transfer on super-resolution inputs without the need for pre-training on pair-wise datasets or imposing extra constraints. Our method utilizes a lightweight StyleNet to enable style transfer from a style image to a content image while preserving non-color information.
+To further enhance the style transfer process, we introduce an instance-adaptive optimization to prioritize the photorealism of outputs and accelerate the convergence of the style network, leading to a rapid training completion within seconds.
+Moreover, IPST is well-suited for multi-frame style transfer tasks, as it retains temporal and multi-view consistency of the multi-frame inputs such as video and Neural Radiance Field (NeRF).
 
 
 
@@ -60,10 +65,7 @@ For a content-style image pair, run
 ```bash
 python transfer.py --content-image {content_image_path} --style-image {style_image_path}
 ```
-For multiple content-style image pairs, please put them into separate folders and make sure image pair names are the same and run
-```bash
-python transfer.py --content-image-folder {content_image_folder_path} --style-image-folder {style_image_folder_path}
-```
+
 ### Video style transfer
 By default, IPST will load and transfer all video frames, which means the batch size is equal to the number of frames. This setting achieves extreme speed but can potentially cause memory problems.
 ```bash
@@ -71,11 +73,8 @@ python transfer.py --content-video {content_image_path} --style-image {style_ima
 ```
 Using the ```--frame-by-frame``` option will set the batch size to 1, enabling the processing of longer videos at the expense of speed.
 ```bash
-python transfer.py --content-video {content_video_path} --style-image {style_image_path} --frame-by-frame
+python transfer.py --content-video {content_video_path} --style-image {style_image_path} --frame-by-frame True
 ```
 If it is still not working, try to split the whole video into smaller videos.
 
 # Citation
-
-# Contact
-If you are interested in this project or have questions about it, feel free to contact Rong Liu (<rliu8691@usc.edu>) and Scott Easley (<seasley@usc.edu>).
