@@ -18,7 +18,7 @@
 <p align="center">
 <a href="https://rongliu-leo.github.io/Video-Style-Transfer/">Project Page</a>
 <a>  |  </a>
-<a href="https://www.usc.edu/">Paper</a> 
+<a href="https://arxiv.org/abs/2309.10011">Paper</a> 
 </p>
 
  <p align="center">
