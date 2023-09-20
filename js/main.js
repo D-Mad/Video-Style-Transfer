@@ -71,13 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const [videoA, videoB] = pair;
 
         videoA.addEventListener('timeupdate', function() {
-            if (Math.abs(videoA.currentTime - videoB.currentTime) > 0.05) {
+            if (Math.abs(videoA.currentTime - videoB.currentTime) > 0.1) {
                 videoB.currentTime = videoA.currentTime;
             }
         });
 
         videoB.addEventListener('timeupdate', function() {
-            if (Math.abs(videoB.currentTime - videoA.currentTime) > 0.05) {
+            if (Math.abs(videoB.currentTime - videoA.currentTime) > 0.1) {
                 videoA.currentTime = videoB.currentTime;
             }
         });
@@ -105,5 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoA.pause();
             }
         });
+    });
+});
+
+$(document).ready(function() {
+    var editor = CodeMirror.fromTextArea(document.getElementById("bibtex"), {
+        lineNumbers: false,
+        lineWrapping: true,
+        readOnly:true
+    });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
     });
 });
