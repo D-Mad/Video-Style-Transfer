@@ -83,3 +83,13 @@ python transfer.py --content-video {content_video_path} --style-image {style_ima
 If it is still not working, try to split the whole video into smaller videos.
 
 # Citation
+```bibtex
+@misc{liu2023instant,
+    title={Instant Photorealistic Style Transfer: A Lightweight and Adaptive Approach}, 
+    author={Rong Liu and Enyu Zhao and Zhiyuan Liu and Andrew Wei-Wen Feng and Scott John Easley},
+    year={2023},
+    eprint={2309.10011},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
