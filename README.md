@@ -3,7 +3,7 @@
 <a style="color:#000000;" href="https://rongliu-leo.github.io/">Rong Liu<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a style="color:#000000;" href="https://www.linkedin.com/in/enyu-zhao-564566250/">Enyu Zhao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a style="color:#000000;" href="https://www.linkedin.com/in/liuzy98/">Zhiyuan Liu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a style="color:#000000;" href="">Andrew Wei-Wen Feng<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="color:#000000;" href="https://scholar.google.com/citations?user=JKWxGfsAAAAJ&hl=en">Andrew Feng<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a style="color:#000000;" href="https://viterbi.usc.edu/directory/faculty/Easley/Scott">Scott John Easley<sup>1</sup></a>
 </p>
 
