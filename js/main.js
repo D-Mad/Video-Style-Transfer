@@ -58,3 +58,63 @@ function showVideo(beforePath, stylePath, afterPath) {
     style.src = stylePath;
     after.src = afterPath;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const videoPairs = [
+        [document.getElementById('before-vid'), document.getElementById('after-vid')],
+        [document.getElementById('before-nerf'), document.getElementById('after-nerf')],
+        // Add more pairs if needed
+    ];
+
+    videoPairs.forEach(pair => {
+        const [videoA, videoB] = pair;
+
+        videoA.addEventListener('timeupdate', function() {
+            if (Math.abs(videoA.currentTime - videoB.currentTime) > 0.1) {
+                videoB.currentTime = videoA.currentTime;
+            }
+        });
+
+        videoB.addEventListener('timeupdate', function() {
+            if (Math.abs(videoB.currentTime - videoA.currentTime) > 0.1) {
+                videoA.currentTime = videoB.currentTime;
+            }
+        });
+
+        videoA.addEventListener('play', function() {
+            if (videoB.paused && !videoB.ended) {
+                videoB.play();
+            }
+        });
+
+        videoA.addEventListener('pause', function() {
+            if (!videoB.paused && !videoB.ended) {
+                videoB.pause();
+            }
+        });
+
+        videoB.addEventListener('play', function() {
+            if (videoA.paused && !videoA.ended) {
+                videoA.play();
+            }
+        });
+
+        videoB.addEventListener('pause', function() {
+            if (!videoA.paused && !videoA.ended) {
+                videoA.pause();
+            }
+        });
+    });
+});
+
+$(document).ready(function() {
+    var editor = CodeMirror.fromTextArea(document.getElementById("bibtex"), {
+        lineNumbers: false,
+        lineWrapping: true,
+        readOnly:true
+    });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+});
